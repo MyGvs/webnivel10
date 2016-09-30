@@ -32,7 +32,7 @@
 <body>
 	<div class="container">
 
-		<form class="form-register">
+		
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2 class="form-register-heading">
@@ -56,8 +56,8 @@
 				  	</div>
 				  	<div class="form-group form-inline">
 						<label for="reunion"> Dias de Reunion: </label>
-						<div id="reunion">
-							<div class="checkbox">
+						<ul class="list-group" id="reunion">
+							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" value="lunes" id="lunes"> Lunes 
@@ -65,9 +65,9 @@
 								</div>
 								<input type="text" class="form-control timepicker" id="lunes_inicio"> 
 								<input type="text" class="form-control timepicker" id="lunes_fin"> 
-							</div>
+							</li>
 							<div id="reunion">
-							<div class="checkbox">
+							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" value="martes" id="martes"> Martes 
@@ -75,9 +75,9 @@
 								</div>
 								<input type="text" class="form-control timepicker" id="martes_inicio"> 
 								<input type="text" class="form-control timepicker" id="martes_fin"> 
-							</div>
+							</li>
 							<div id="reunion">
-							<div class="checkbox">
+							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" value="miercoles" id="miercoles"> Miercoles 
@@ -85,9 +85,9 @@
 								</div>
 								<input type="text" class="form-control timepicker" id="miercoles_inicio"> 
 								<input type="text" class="form-control timepicker" id="miercoles_fin"> 
-							</div>
+							</li>
 							<div id="reunion">
-							<div class="checkbox">
+							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" value="jueves" id="jueves"> Jueves 
@@ -95,9 +95,9 @@
 								</div>
 								<input type="text" class="form-control timepicker" id="jueves_inicio"> 
 								<input type="text" class="form-control timepicker" id="jueves_fin"> 
-							</div>
+							</li>
 							<div id="reunion">
-							<div class="checkbox">
+							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" value="viernes" id="viernes"> Viernes 
@@ -105,9 +105,9 @@
 								</div>
 								<input type="text" class="form-control timepicker" id="viernes_inicio"> 
 								<input type="text" class="form-control timepicker" id="viernes_fin"> 
-							</div>
+							</li>
 							<div id="reunion">
-							<div class="checkbox">
+							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" value="sabado" id="sabado"> Sábado 
@@ -115,9 +115,9 @@
 								</div>
 								<input type="text" class="form-control timepicker" id="sabado_inicio"> 
 								<input type="text" class="form-control timepicker" id="sabado_fin"> 
-							</div>
+							</li>
 							<div id="reunion">
-							<div class="checkbox">
+							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" value="domingo" id="domingo"> Domingo 
@@ -125,14 +125,14 @@
 								</div>
 								<input type="text" class="form-control timepicker" id="domingo_inicio"> 
 								<input type="text" class="form-control timepicker" id="domingo_fin"> 
-							</div>
+							</li>
 							
-						</div>
+						</ul>
 				  	</div>
 				  	<button class="btn btn-block btn-success" onClick="register()">Registrar</button>
 				</div>
 			</div>
-		</form>
+		
 
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -246,8 +246,8 @@
 				domingo_fin: domingo_fin.value, 
 				fecha_registro: today 
 			});
-			
 
+			alert("se logro?");
     		//alert(nombre.value+" -- "+biografia.value+" -- "+lunes.checked);
     		//alert(lunes_inicio.value+"--"+lunes_fin.value);
     	}
