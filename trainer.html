@@ -26,13 +26,43 @@
 	<link href="dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
 	<link href="dist/css/register.css" rel="stylesheet">
+	<link href="dist/css/navbar-fixed-top.css" rel="stylesheet">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 </head>
 
 <body>
+	<!-- Static navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="listaEntrenadores.html">Sorteo de Asesores</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Bienvenido,
+						<script>
+						var user = localStorage.getItem("nombre");
+						document.write(user);
+						</script>
+						</a>
+					</li>
+					<li><a href="panelDeControl.html">Panel de Control</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a id="cerrarSesion" href="#">Cerrar Sesion<span class="sr-only">(current)</span></a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
 	<div class="container">
 
-		
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h2 class="form-register-heading">
@@ -60,79 +90,79 @@
 							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value="lunes" id="lunes"> Lunes 
+										<input type="checkbox" value="lunes" id="lunes"> Lunes
 									</label>
 								</div>
-								<input type="text" class="form-control timepicker" id="lunes_inicio"> 
-								<input type="text" class="form-control timepicker" id="lunes_fin"> 
+								<input type="text" class="form-control timepicker" id="lunes_inicio">
+								<input type="text" class="form-control timepicker" id="lunes_fin">
 							</li>
 							<div id="reunion">
 							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value="martes" id="martes"> Martes 
+										<input type="checkbox" value="martes" id="martes"> Martes
 									</label>
 								</div>
-								<input type="text" class="form-control timepicker" id="martes_inicio"> 
-								<input type="text" class="form-control timepicker" id="martes_fin"> 
+								<input type="text" class="form-control timepicker" id="martes_inicio">
+								<input type="text" class="form-control timepicker" id="martes_fin">
 							</li>
 							<div id="reunion">
 							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value="miercoles" id="miercoles"> Miercoles 
+										<input type="checkbox" value="miercoles" id="miercoles"> Miercoles
 									</label>
 								</div>
-								<input type="text" class="form-control timepicker" id="miercoles_inicio"> 
-								<input type="text" class="form-control timepicker" id="miercoles_fin"> 
+								<input type="text" class="form-control timepicker" id="miercoles_inicio">
+								<input type="text" class="form-control timepicker" id="miercoles_fin">
 							</li>
 							<div id="reunion">
 							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value="jueves" id="jueves"> Jueves 
+										<input type="checkbox" value="jueves" id="jueves"> Jueves
 									</label>
 								</div>
-								<input type="text" class="form-control timepicker" id="jueves_inicio"> 
-								<input type="text" class="form-control timepicker" id="jueves_fin"> 
+								<input type="text" class="form-control timepicker" id="jueves_inicio">
+								<input type="text" class="form-control timepicker" id="jueves_fin">
 							</li>
 							<div id="reunion">
 							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value="viernes" id="viernes"> Viernes 
+										<input type="checkbox" value="viernes" id="viernes"> Viernes
 									</label>
 								</div>
-								<input type="text" class="form-control timepicker" id="viernes_inicio"> 
-								<input type="text" class="form-control timepicker" id="viernes_fin"> 
+								<input type="text" class="form-control timepicker" id="viernes_inicio">
+								<input type="text" class="form-control timepicker" id="viernes_fin">
 							</li>
 							<div id="reunion">
 							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value="sabado" id="sabado"> Sábado 
+										<input type="checkbox" value="sabado" id="sabado"> Sábado
 									</label>
 								</div>
-								<input type="text" class="form-control timepicker" id="sabado_inicio"> 
-								<input type="text" class="form-control timepicker" id="sabado_fin"> 
+								<input type="text" class="form-control timepicker" id="sabado_inicio">
+								<input type="text" class="form-control timepicker" id="sabado_fin">
 							</li>
 							<div id="reunion">
 							<li class="list-group-item">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value="domingo" id="domingo"> Domingo 
+										<input type="checkbox" value="domingo" id="domingo"> Domingo
 									</label>
 								</div>
-								<input type="text" class="form-control timepicker" id="domingo_inicio"> 
-								<input type="text" class="form-control timepicker" id="domingo_fin"> 
+								<input type="text" class="form-control timepicker" id="domingo_inicio">
+								<input type="text" class="form-control timepicker" id="domingo_fin">
 							</li>
-							
+
 						</ul>
 				  	</div>
 				  	<button class="btn btn-block btn-success" onClick="register()">Registrar</button>
 				</div>
 			</div>
-		
+
 
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -188,11 +218,11 @@
 
 			if(dd<10) {
 			  	dd='0'+dd
-			} 
+			}
 
 			if(mm<10) {
 			  	mm='0'+mm
-			} 
+			}
 			today = mm+'/'+dd+'/'+yyyy;
 			/*
 			console.log(nombre.value);
@@ -241,32 +271,32 @@
 			// Points to 'images'
 			var imagesRef = spaceRef.parent;
 
-			
+
 			firebase.database().ref('entrenador/').push({
 				nombre: nombre.value,
 				biografia: biografia.value,
 				lunes: lunes.checked,
-				lunes_inicio: lunes_inicio.value, 
-				lunes_fin: lunes_fin.value, 
-				martes: martes.checked, 
-				martes_inicio: martes_inicio.value, 
-				martes_fin: martes_fin.value, 
-				miercoles: miercoles.checked, 
-				miercoles_inicio: miercoles_inicio.value, 
-				miercoles_fin: miercoles_fin.value, 
-				jueves: jueves.checked, 
-				jueves_inicio: jueves_inicio.value, 
-				jueves_fin: jueves_fin.value, 
-				viernes: viernes.checked, 
-				viernes_inicio: viernes_inicio.value, 
-				viernes_fin: viernes_fin.value, 
-				sabado: sabado.checked, 
-				sabado_inicio: sabado_inicio.value, 
-				sabado_fin: sabado_fin.value, 
-				domingo: domingo.checked, 
-				domingo_inicio: domingo_inicio.value, 
-				domingo_fin: domingo_fin.value, 
-				fecha_registro: today 
+				lunes_inicio: lunes_inicio.value,
+				lunes_fin: lunes_fin.value,
+				martes: martes.checked,
+				martes_inicio: martes_inicio.value,
+				martes_fin: martes_fin.value,
+				miercoles: miercoles.checked,
+				miercoles_inicio: miercoles_inicio.value,
+				miercoles_fin: miercoles_fin.value,
+				jueves: jueves.checked,
+				jueves_inicio: jueves_inicio.value,
+				jueves_fin: jueves_fin.value,
+				viernes: viernes.checked,
+				viernes_inicio: viernes_inicio.value,
+				viernes_fin: viernes_fin.value,
+				sabado: sabado.checked,
+				sabado_inicio: sabado_inicio.value,
+				sabado_fin: sabado_fin.value,
+				domingo: domingo.checked,
+				domingo_inicio: domingo_inicio.value,
+				domingo_fin: domingo_fin.value,
+				fecha_registro: today
 			});
 
 			alert("se logro?");
