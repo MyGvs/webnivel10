@@ -13,6 +13,18 @@
 	<link href="dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
 	<link href="dist/css/register.css" rel="stylesheet">
+	<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+		apiKey: "AIzaSyB4JmaNIheFUZwMsjTBXCnFHKQNfpRFfXA",
+		authDomain: "formularios-81a40.firebaseapp.com",
+		databaseURL: "https://formularios-81a40.firebaseio.com",
+		storageBucket: "formularios-81a40.appspot.com",
+		messagingSenderId: "793947826055"
+		};
+		firebase.initializeApp(config);
+	</script>
 </head>
 
 <body>
@@ -46,71 +58,71 @@
 							<div class="checkbox">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value=""> Lunes 
+										<input type="checkbox" value="lunes" id="lunes"> Lunes 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="inicio"> 
-								<input type="time" class="form-control" id="fin"> 
+								<input type="time" class="form-control" id="lunes_inicio"> 
+								<input type="time" class="form-control" id="lunes_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value=""> Martes 
+										<input type="checkbox" value="martes"> Martes 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="inicio"> 
-								<input type="time" class="form-control" id="fin"> 
+								<input type="time" class="form-control" id="martes_inicio"> 
+								<input type="time" class="form-control" id="martes_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value=""> Miercoles 
+										<input type="checkbox" value="miercoles"> Miercoles 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="inicio"> 
-								<input type="time" class="form-control" id="fin"> 
+								<input type="time" class="form-control" id="miercoles_inicio"> 
+								<input type="time" class="form-control" id="miercoles_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value=""> Jueves 
+										<input type="checkbox" value="jueves"> Jueves 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="inicio"> 
-								<input type="time" class="form-control" id="fin"> 
+								<input type="time" class="form-control" id="jueves_inicio"> 
+								<input type="time" class="form-control" id="jueves_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value=""> Viernes 
+										<input type="checkbox" value="viernes"> Viernes 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="inicio"> 
-								<input type="time" class="form-control" id="fin"> 
+								<input type="time" class="form-control" id="viernes_inicio"> 
+								<input type="time" class="form-control" id="viernes_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value=""> Sábado 
+										<input type="checkbox" value="sabado"> Sábado 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="inicio"> 
-								<input type="time" class="form-control" id="fin"> 
+								<input type="time" class="form-control" id="sabado_inicio"> 
+								<input type="time" class="form-control" id="sabado_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" value=""> Domingo 
+										<input type="checkbox" value="domingo"> Domingo 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="inicio"> 
-								<input type="time" class="form-control" id="fin"> 
+								<input type="time" class="form-control" id="domingo_inicio"> 
+								<input type="time" class="form-control" id="domingo_fin"> 
 							</div>
 							
 						</div>
@@ -128,11 +140,34 @@
     <!-- Custom script -->
     <script type="text/javascript">
     	var register = function(){
-    		var nombre = document.getElementById("biografia");
-    		alert(nombre.value);
+    		var nombre = document.getElementById("nombre");
+    		var biografia = document.getElementById("biografia");
+
+    		var lunes = document.getElementById("lunes");
+    			var lunes_inicio = document.getElementById("lunes_inicio");
+    			var lunes_fin = document.getElementById("lunes_fin");
+    		var martes = document.getElementById("martes");
+    			var martes_inicio = document.getElementById("martes_inicio");
+    			var martes_fin = document.getElementById("martes_fin");
+    		var miercoles = document.getElementById("miercoles");
+    			var miercoles_inicio = document.getElementById("miercoles_inicio");
+    			var miercoles_fin = document.getElementById("miercoles_fin");
+    		var jueves = document.getElementById("jueves");
+    			var jueves_inicio = document.getElementById("jueves_inicio");
+    			var jueves_fin = document.getElementById("jueves_fin");
+    		var viernes = document.getElementById("viernes");
+    			var viernes_inicio = document.getElementById("viernes_inicio");
+    			var viernes_fin = document.getElementById("viernes_fin");
+    		var sabado = document.getElementById("sabado");
+    			var sabado_inicio = document.getElementById("sabado_inicio");
+    			var sabado_fin = document.getElementById("sabado_fin");
+    		var domingo = document.getElementById("domingo");
+    			var domingo_inicio = document.getElementById("domingo_inicio");
+    			var domingo_fin = document.getElementById("domingo_fin");
+
+    		//alert(nombre.value+" -- "+biografia.value+" -- "+lunes.checked);
+    		alert(lunes_inicio.value+"--"+lunes_fin.value);
     	}
     </script>
-
-
 </body>
 </html>
