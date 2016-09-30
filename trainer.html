@@ -25,6 +25,7 @@
 		};
 		firebase.initializeApp(config);
 	</script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 </head>
 
 <body>
@@ -61,8 +62,8 @@
 										<input type="checkbox" value="lunes" id="lunes"> Lunes 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="lunes_inicio"> 
-								<input type="time" class="form-control" id="lunes_fin"> 
+								<input type="text" class="form-control timepicker" id="lunes_inicio"> 
+								<input type="text" class="form-control timepicker" id="lunes_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
@@ -71,8 +72,8 @@
 										<input type="checkbox" value="martes"> Martes 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="martes_inicio"> 
-								<input type="time" class="form-control" id="martes_fin"> 
+								<input type="text" class="form-control timepicker" id="martes_inicio"> 
+								<input type="text" class="form-control timepicker" id="martes_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
@@ -81,8 +82,8 @@
 										<input type="checkbox" value="miercoles"> Miercoles 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="miercoles_inicio"> 
-								<input type="time" class="form-control" id="miercoles_fin"> 
+								<input type="text" class="form-control timepicker" id="miercoles_inicio"> 
+								<input type="text" class="form-control timepicker" id="miercoles_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
@@ -91,8 +92,8 @@
 										<input type="checkbox" value="jueves"> Jueves 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="jueves_inicio"> 
-								<input type="time" class="form-control" id="jueves_fin"> 
+								<input type="text" class="form-control timepicker" id="jueves_inicio"> 
+								<input type="text" class="form-control timepicker" id="jueves_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
@@ -101,8 +102,8 @@
 										<input type="checkbox" value="viernes"> Viernes 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="viernes_inicio"> 
-								<input type="time" class="form-control" id="viernes_fin"> 
+								<input type="text" class="form-control timepicker" id="viernes_inicio"> 
+								<input type="text" class="form-control timepicker" id="viernes_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
@@ -111,8 +112,8 @@
 										<input type="checkbox" value="sabado"> Sábado 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="sabado_inicio"> 
-								<input type="time" class="form-control" id="sabado_fin"> 
+								<input type="text" class="form-control timepicker" id="sabado_inicio"> 
+								<input type="text" class="form-control timepicker" id="sabado_fin"> 
 							</div>
 							<div id="reunion">
 							<div class="checkbox">
@@ -121,8 +122,8 @@
 										<input type="checkbox" value="domingo"> Domingo 
 									</label>
 								</div>
-								<input type="time" class="form-control" id="domingo_inicio"> 
-								<input type="time" class="form-control" id="domingo_fin"> 
+								<input type="text" class="form-control timepicker" id="domingo_inicio"> 
+								<input type="text" class="form-control timepicker" id="domingo_fin"> 
 							</div>
 							
 						</div>
@@ -138,6 +139,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="dist/js/bootstrap.min.js"></script>
     <!-- Custom script -->
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
     <script type="text/javascript">
     	var register = function(){
     		var nombre = document.getElementById("nombre");
@@ -168,6 +172,17 @@
     		//alert(nombre.value+" -- "+biografia.value+" -- "+lunes.checked);
     		alert(lunes_inicio.value+"--"+lunes_fin.value);
     	}
+    	$(document).ready(function(){
+			$('.timepicker').timepicker({
+			    timeFormat: 'h:mm p',
+			    interval: 60,
+			    defaultTime: '08',
+			    startTime: '01:00am',
+			    dynamic: false,
+			    dropdown: true,
+			    scrollbar: true
+			});
+		});
     </script>
 </body>
 </html>
