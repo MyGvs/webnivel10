@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <link rel="icon" href="img/boton-app.png">
+    <title>Panel De Páginas Personales</title>
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="dist/css/signin.css" rel="stylesheet">
+    <link href="dist/css/navbar-fixed-top.css" rel="stylesheet">
+    <style>
+    .margintop{
+      margin-top: 7px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Páginas Personales</a>
+        </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Bienvenido,
+                <script>
+                var user = localStorage.getItem("nombre");
+                document.write(user);
+                </script>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a id="cerrarSesion" href="#">Cerrar Sesion<span class="sr-only">(current)</span></a></li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="form-signin">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="agregarPagina">Agregar Página Personal</button>
+      <button class="btn btn-lg btn-primary btn-block margintop" type="submit" id="listarPaginas">Lista de Páginas Personales</button>
+    </div>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>    
+    <script>
+
+    /*if(localStorage.getItem("userID")){
+    }else{
+      window.location.assign("index.html");
+    }*/
+    var agregarPagina = document.getElementById('agregarPagina');
+    var listarPaginas = document.getElementById('listarPaginas');
+
+    agregarPagina.addEventListener('click', function () {
+      window.location.assign("agregarPagina.html");
+    });
+    listarPaginas.addEventListener('click', function () {
+      window.location.assign("listarPaginas.html");
+    });
+    var cerrar = document.getElementById('cerrarSesion');
+    cerrar.addEventListener('click', function () {
+      localStorage.removeItem("nombre");
+      localStorage.removeItem("userID");
+      window.location.assign("index.html");
+    });
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

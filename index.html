@@ -136,6 +136,8 @@
     <script>
     var codigos = [];
     var nombres = [];
+    var emails = [];
+
     var randomAsesor = 0;
     document.getElementById('registro').style.display = 'none'; //block
     var obtenerCodigo = document.getElementById('obtenerCodigo');
@@ -149,10 +151,12 @@
       var c = 0;
       codigos = [];
       nombres = [];
+      emails = [];
       var ref = new Firebase("https://n10.firebaseio.com/asesor");
       ref.on('child_added', function(snapshot) {
         var asesor = snapshot.val();
         var nombreAsesor = asesor.firstName +" "+ asesor.lastName;
+        emails.push(asesor.email);
         nombres.push(nombreAsesor);
         codigos.push(asesor.memberID);
         c++;
@@ -217,6 +221,10 @@
       var hour = date.getHours();
       var minute = date.getMinutes();
       if(nombre.value != "" && email.value != "" && celular.value != "" && ciudad.value != "" && pais.value != "" && codigo.value != ""){
+        //bloqueando boton
+        document.getElementById('registro').disabled = true;
+        document.getElementById('registro').innerHTML= "Registrando...";
+        //logs
         console.log(nombre.value+"-"+email.value+"-"+celular.value+"-"+ciudad.value+"-"+pais.value+"-"+codigo.value);
         console.log((month+1)+"-"+day+"-"+year);
         console.log(hour+"-"+minute);
@@ -249,7 +257,7 @@
       }
     }
     function enviarEmail(){
-      console.log("email enviado!");
+      console.log("email enviado!"+emails[randomAsesor]);
     }
     </script>
     <!-- Bootstrap core JavaScript
