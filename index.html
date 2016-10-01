@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="images/ic_launcher.png">
     <title>Registro N10</title>
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
   	<script>
@@ -91,8 +91,8 @@
 
           <div class="input-group input-group-lg">
               <span class="input-group-addon col-6" id="sizing-addon1">Email:</span>
-              <label for="inputNombre" class="sr-only">Email</label>
-              <input type="text" id="inputNombre" class="form-control" placeholder="ingresa tu email..." aria-describedby="sizing-addon1" required>
+              <label for="inputEmail" class="sr-only">Email</label>
+              <input type="text" id="inputEmail" class="form-control" placeholder="ingresa tu email..." aria-describedby="sizing-addon1" required>
           </div>
 
           <div class="input-group input-group-lg">
@@ -103,30 +103,29 @@
 
           <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1">Ciudad:</span>
-              <label for="inputCelular" class="sr-only">Ciudad</label>
-              <input type="text" id="inputCelular" class="form-control" placeholder="ingresa tu ciudad..." aria-describedby="sizing-addon1" required>
+              <label for="inputCiudad" class="sr-only">Ciudad</label>
+              <input type="text" id="inputCiudad" class="form-control" placeholder="ingresa tu ciudad..." aria-describedby="sizing-addon1" required>
           </div>
 
           <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1">País:</span>
-              <label for="inputCelular" class="sr-only">País</label>
-              <input type="text" id="inputCelular" class="form-control" placeholder="ingresa tu país..." aria-describedby="sizing-addon1" required>
+              <label for="inputPais" class="sr-only">País</label>
+              <input type="text" id="inputPais" class="form-control" placeholder="ingresa tu país..." aria-describedby="sizing-addon1" required>
           </div>
-
           <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1">Código de Entrenador:</span>
-              <label for="inputCelular" class="sr-only">Código de Entrenador</label>
-              <input type="text" id="inputCelular" class="form-control" placeholder="Código de Entrenador" aria-describedby="sizing-addon1" required>
-          </div>
-          <button class="btn btn-lg btn-primary btn-block" onClick="register()">Registrame</button>
+            <span class="input-group-addon" id="sizing-addon1">Código de Entrenador:</span>
+              <input type="text" id="inputCodigo" class="form-control" placeholder="Código de Entrenador" aria-describedby="sizing-addon1" required>
+              <span class="input-group-btn">
+                <button id="obtenerCodigo" class="btn btn-success btn-block" type="button">Dame un Código!</button>
+              </span>
+          </div><!-- /input-group -->
+          <button id="registro" class="btn btn-lg btn-primary btn-block" onClick="register()">Registrame</button>
         </form>
-        <br>
-        <button class="btn btn-lg btn-success btn-block">No tengo Código</button>
         <br>
       </div>
     </div>
 
-    <footer class ="bs-docs-footer navbar-inverse" role="contentinfo">
+    <footer class ="bs-docs-footer textcolorWhite" role="contentinfo">
       <p><h3>Siguenos en</h3></p>
       <p>
         <a href="#facebook"><img src="images/social/facebook.png" width="60px" height="60px"></img></a>
@@ -135,17 +134,127 @@
       </p>
       <p >&copy; 2016 Nivel 10. All rights reserved.
         <a href="#privacy">Privacy</a><font color=white size="3">.</font>
-        <a href="#terms">Terms of Service</a>
+        <a href="#terms">Terms of Service</a>.
       </p>
     </footer>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
     <script>
+    var codigos = [];
+    var nombres = [];
+    var randomAsesor = 0;
+    document.getElementById('registro').style.display = 'none'; //block
+    var obtenerCodigo = document.getElementById('obtenerCodigo');
+    var myInput = document.getElementById('inputCodigo');
+
+    obtenerCodigo.addEventListener('click', function () {
+      contarASsesor();
+    });
+    //FundcionesObtener Código
+    function contarASsesor(){
+      var c = 0;
+      codigos = [];
+      nombres = [];
+      var ref = new Firebase("https://n10.firebaseio.com/asesor");
+      ref.on('child_added', function(snapshot) {
+        var asesor = snapshot.val();
+        var nombreAsesor = asesor.firstName +" "+ asesor.lastName;
+        nombres.push(nombreAsesor);
+        codigos.push(asesor.memberID);
+        c++;
+      });
+      ref.once('value', function(snapshot) {
+        //Aqui se recibe el codigo obtenido
+        var rand = randomIntFromInterval(0,c);
+        randomAsesor = rand;
+        document.getElementById('inputCodigo').value = codigos[rand];
+        console.log(rand);
+        document.getElementById('registro').style.display = 'block';
+      });
+    }
+    function randomIntFromInterval(min,max){
+      return Math.floor(Math.random() * (max - min) + min);
+    }
+    //Fundciones Validar Código
+    function validarCodigo(codigoIngresado){
+      if(codigoIngresado != ""){
+        var ref = new Firebase("https://n10.firebaseio.com/asesor");
+        var valido = false;
+        ref.orderByChild("memberID").equalTo(codigoIngresado.replace(/\s/g, '')).on("child_added", function(snapshot) {
+          valido = true;
+        });
+        ref.once('value', function(snapshot) {
+          //Aqui se verifica True: existe el codigo, False: no existe el codigo
+          if(valido){
+            document.getElementById('registro').style.display = 'block';
+          }else{
+            document.getElementById('registro').style.display = 'none';
+          }
+        });
+      }else{
+        document.getElementById('registro').style.display = 'none';
+      }
+    }
+    function attachTextListener(input, func) {
+      if (window.addEventListener) {
+        input.addEventListener('input', func, false);
+      } else
+      input.attachEvent('onpropertychange', function() {
+        func.call(input);
+      });
+    }
+    attachTextListener(myInput, function() {
+      // Check and manipulate this.value here
+      validarCodigo(this.value);
+      var converted = this.value.toUpperCase();
+      document.getElementById('inputCodigo').value = converted;
+    });
     function register(){
-      var nombre = document.getElementById("nombre");
-      var celular = document.getElementById("nombre");
-      var ciudad = document.getElementById("nombre");
-      var pais = document.getElementById("nombre");
-      var codigo = document.getElementById("nombre");
-      
+      var nombre = document.getElementById("inputNombre");
+      var email = document.getElementById("inputEmail");
+      var celular = document.getElementById("inputCelular");
+      var ciudad = document.getElementById("inputCiudad");
+      var pais = document.getElementById("inputPais");
+      var codigo = document.getElementById("inputCodigo");
+      var date = new Date();
+      var month = date.getMonth();
+      var day = date.getDate();
+      var year = date.getFullYear();
+      var hour = date.getHours();
+      var minute = date.getMinutes();
+      if(nombre.value != "" && email.value != "" && celular.value != "" && ciudad.value != "" && pais.value != "" && codigo.value != ""){
+        console.log(nombre.value+"-"+email.value+"-"+celular.value+"-"+ciudad.value+"-"+pais.value+"-"+codigo.value);
+        console.log((month+1)+"-"+day+"-"+year);
+        console.log(hour+"-"+minute);
+        //enviar email
+        localStorage.setItem("ususario", nombre.value);
+        localStorage.setItem("asesor", nombres[randomAsesor]);
+        localStorage.setItem("codigo", codigos[randomAsesor]);
+        enviarEmail();
+        //writing data to firebase
+        var prospectoRef = firebase.database().ref('prospecto/').push();
+        prospectoRef.set({
+          nombre: nombre.value,
+          email: email.value,
+          celular: celular.value,
+          ciudad: ciudad.value,
+          pais: pais.value,
+          codigo: codigo.value,
+          fecha: ((month+1)+"/"+day+"/"+year),
+          hora: (hour+":"+minute)
+        }).then(function() {
+          console.log("Set exitoso.");
+          window.location.assign("registroExitoso.html");
+        })
+        .catch(function(error) {
+          console.log("Set fallido: " + error.message);
+        });
+
+      }else{
+        console.log("there are no values.");
+      }
+    }
+    function enviarEmail(){
+      console.log("email enviado!");
     }
     </script>
     <!-- Bootstrap core JavaScript
