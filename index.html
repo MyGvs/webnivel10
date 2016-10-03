@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="images/ic_launcher.png">
     <title>Registro N10</title>
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script src="http://smtpjs.com/smtp.js"></script>
   	<script>
   		// Initialize Firebase
   		var config = {
@@ -107,19 +108,19 @@
               <label for="inputPais" >País:</label>
               <input type="text" id="inputPais" class="form-control" placeholder="ingresa tu país..." aria-describedby="sizing-addon1" required>
           </div>
+          <label for="obtenerCodigo" >Código de Entrenador:</label>
           <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1">Código de Entrenador:</span>
-              <input type="text" id="inputCodigo" class="form-control" placeholder="Código de Entrenador" aria-describedby="sizing-addon1" required>
+              <input type="text" id="inputCodigo" class="form-control" placeholder="Código..." aria-describedby="sizing-addon1" required>
               <span class="input-group-btn">
                 <button id="obtenerCodigo" class="btn btn-success btn-block" type="button">Dame un Código!</button>
               </span>
           </div><!-- /input-group -->
           <button id="registro" class="btn btn-lg btn-primary btn-block" onClick="register()">Registrame</button>
         </form>
+        <button  class="btn btn-success btn-block" type="button" onClick="enviarEmail()">Enviar EMAIL</button>
         <br>
       </div>
     </div>
-
     <footer class ="bs-docs-footer textcolorWhite" role="contentinfo">
       <p><h3>Siguenos en</h3></p>
       <p>
@@ -257,7 +258,19 @@
       }
     }
     function enviarEmail(){
-      console.log("email enviado!"+emails[randomAsesor]);
+      //console.log("email enviado!"+emails[randomAsesor]);
+      /*Email.send("organizacionops@gmail.com",
+      "mygvs.mh@gmail.com",
+      "This is a subject",
+      "this is the body",
+      {token: "7d7a6d0b-2605-47d2-bc93-46101ef41f5b"});*/
+      Email.send("mygvs.mh@gmail.com",
+      "mygvs.mh@gmail.com",
+      "This is a subject",
+      "this is the body",
+      "smtp.hostgator.com",
+      "nivel10",
+      "RQOwAL2Tng9i");
     }
     </script>
     <!-- Bootstrap core JavaScript
