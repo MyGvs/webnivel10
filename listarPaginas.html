@@ -84,6 +84,8 @@
             <td rowspan="2"><h4><b><center> Biografía </center></b></h4></td>
             <td rowspan="2"><h4><b><center> Fecha de registro </center></b></h4></td>
             <td colspan="7"><h4><b><center> Días de reunión </center></b></h4></td>
+            <td rowspan="2"><h4><b><center> Modificar </center></b></h4></td>
+            <td rowspan="2"><h4><b><center> Eliminar </center></b></h4></td>
           </tr>
           <tr>
             <td><h4><b> Lunes </b></h4></td>
@@ -121,6 +123,9 @@
       var entrenadores = firebase.database().ref('entrenador');
       entrenadores.on('child_added', function(data) {
         //console.log(data.val());
+        // Capturar toda la info
+        var info = data.val();
+
         // Crear elementos
         var tr = document.createElement('tr');
         var td1 = document.createElement('td');
@@ -133,6 +138,8 @@
         var td8 = document.createElement('td');
         var td9 = document.createElement('td');
         var td10 = document.createElement('td');
+        var td11 = document.createElement('td');
+        var td12 = document.createElement('td');
 
         var text1 = document.createElement('h4');
         var text2 = document.createElement('h4');
@@ -144,6 +151,8 @@
         var text8 = document.createElement('h4');
         var text9 = document.createElement('h4');
         var text10 = document.createElement('h4');
+        var button1 = document.createElement('button');
+        var button2 = document.createElement('button');
 
         // Estructurar los elementos
         td1.appendChild(text1);
@@ -156,6 +165,8 @@
         td8.appendChild(text8);
         td9.appendChild(text9);
         td10.appendChild(text10);
+        td11.appendChild(button1);
+        td12.appendChild(button2);
 
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -167,6 +178,8 @@
         tr.appendChild(td8);
         tr.appendChild(td9);
         tr.appendChild(td10);
+        tr.appendChild(td11);
+        tr.appendChild(td12);
 
         // Dandoles texto a los objetos
         text1.textContent = data.val().nombre;
@@ -186,11 +199,38 @@
         else text9.textContent = "-";
         if(data.val().domingo) text10.textContent = data.val().domingo_inicio+" - "+data.val().domingo_fin;
         else text10.textContent = "-";
+        button1.textContent = "Modificar";
+        button2.textContent = "Eliminar";
+
+        // Añadir bootstrap
+        button1.className = 'btn btn-warning';
+        button2.className = 'btn btn-danger';
+
+        // Acciones de los botones
+        button1.addEventListener('click', editar_entrenador);
+        button2.addEventListener('click', eliminar_entrenador);
+
+        // Capturando la data
+        button1.info = info;
+        button2.info = info;
 
         // Crear la fila completa
         tablaElementos.appendChild(tr);
+
         //addCommentElement(postElement, data.key, data.val().text, data.val().author);
       });
+
+      /** Editar Entrenador **/
+      function editar_entrenador(event) {
+        console.log(this.info);
+        console.log("Edicion");
+      }
+
+      /** Eliminar Entrenador **/
+      function eliminar_entrenador(event) {
+        console.log(this.info);
+        console.log("Eliminar");
+      }
 
       /** Cerrar Sesión **/
       var cerrar = document.getElementById('cerrarSesion');
