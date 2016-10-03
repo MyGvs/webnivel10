@@ -177,6 +177,7 @@
 		</p>
     </footer>
     <script type="text/javascript">
+    	/** Timepicker function **/
     	$(document).ready(function(){
 			$('.timepicker').timepicker({
 			    timeFormat: 'h:mm p',
@@ -188,12 +189,16 @@
 			    scrollbar: true
 			});
 		});
+
+		/** Cerrar Sesión **/
 		var cerrar = document.getElementById('cerrarSesion');
 		cerrar.addEventListener('click', function () {
 			localStorage.removeItem("nombre");
 			localStorage.removeItem("userID");
 			window.location.assign("index.html");
 		});
+
+		/** Registrar entrenador **/ 
     	var register = function(){
     		var nombre = document.getElementById("nombre");
     		var biografia = document.getElementById("biografia");

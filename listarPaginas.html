@@ -112,7 +112,95 @@
           <h4 class="modal-title" id="myModalLabel"> Edición de entrenador </h4>
         </div>
         <div class="modal-body">
-          ...
+          <form onsubmit="return false">
+            <div class="form-group input-group-lg">
+              <label for="nombre"> Nombre: </label>
+              <input type="text" class="form-control" placeholder="Ej. Juan Perez" id="nombre">
+            </div>
+            <div class="form-group input-group-lg">
+              <label for="biografia"> Biografía: </label>
+              <textarea class="form-control" rows="3" placeholder="Ej. Experiencia de 5 años en Body Combat." id="biografia"></textarea>
+            </div>
+            <div class="form-group input-group-lg">
+              <label for="imagen"> Imágen de Perfil: </label>
+              <input type="file" class="form-control" id="imagen">
+            </div>
+            <div class="form-group input-group-lg form-inline">
+              <label for="reunion"> Dias de Reunion: </label>
+              <ul class="list-group" id="reunion">
+                <li class="form-group input-group-lg">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="lunes" id="lunes"> Lunes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </label>
+                  </div>
+                  <br>
+                  <input type="text" class="form-control timepicker" id="lunes_inicio">
+                  <input type="text" class="form-control timepicker" id="lunes_fin">
+                </li>
+                <li class="form-group input-group-lg">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="martes" id="martes"> Martes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </label>
+                  </div>
+                  <br>
+                  <input type="text" class="form-control timepicker" id="martes_inicio">
+                  <input type="text" class="form-control timepicker" id="martes_fin">
+                </li>
+                <li class="form-group input-group-lg">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="miercoles" id="miercoles"> Miercoles&nbsp;&nbsp;
+                    </label>
+                  </div>
+                  <br>
+                  <input type="text" class="form-control timepicker" id="miercoles_inicio">
+                  <input type="text" class="form-control timepicker" id="miercoles_fin">
+                </li>
+                <li class="form-group input-group-lg">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="jueves" id="jueves"> Jueves &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </label>
+                  </div>
+                  <br>
+                  <input type="text" class="form-control timepicker" id="jueves_inicio">
+                  <input type="text" class="form-control timepicker" id="jueves_fin">
+                </li>
+                <li class="form-group input-group-lg">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="viernes" id="viernes"> Viernes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </label>
+                  </div>
+                  <br>
+                  <input type="text" class="form-control timepicker" id="viernes_inicio">
+                  <input type="text" class="form-control timepicker" id="viernes_fin">
+                </li>
+                <li class="form-group input-group-lg">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="sabado" id="sabado"> Sábado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </label>
+                  </div>
+                  <br>
+                  <input type="text" class="form-control timepicker" id="sabado_inicio">
+                  <input type="text" class="form-control timepicker" id="sabado_fin">
+                </li>
+                <li class="form-group input-group-lg">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="domingo" id="domingo"> Domingo&nbsp;&nbsp;&nbsp;
+                    </label>
+                  </div>
+                  <br>
+                  <input type="text" class="form-control timepicker" id="domingo_inicio">
+                  <input type="text" class="form-control timepicker" id="domingo_fin">
+                </li>
+              </ul>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal"> Cerrar </button>
@@ -137,6 +225,19 @@
     </p>
     </footer>
     <script type="text/javascript">
+      /** Timepicker function **/
+      $(document).ready(function(){
+        $('.timepicker').timepicker({
+            timeFormat: 'h:mm p',
+            interval: 60,
+            defaultTime: '08',
+            startTime: '01:00am',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+      });
+      
       var tablaElementos = document.getElementById('tabla-elementos');
 
       var entrenadores = firebase.database().ref('entrenador');
