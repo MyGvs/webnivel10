@@ -160,6 +160,10 @@
 				</ul>
 		  	</div>
 		  	<button class="btn btn-lg btn-success btn-block" onClick="register()">Registrar</button>
+		  	<br>
+		  	<div id="registradorCorrectamente">
+		  		
+		  	</div>
 		  	<br><br>
 	</div>
 	<footer class ="bs-docs-footer textcolorWhite" role="contentinfo">
@@ -276,10 +280,56 @@
 				fecha_registro: today,
 				url_imagen: 'imagenes/'+file.name
 			});
-			//alert("se logro?");
-    		//alert(nombre.value+" -- "+biografia.value+" -- "+lunes.checked);
-    		//alert(lunes_inicio.value+"--"+lunes_fin.value);
-    	}
+
+			/** Alerta de confirmacion de registro **/
+			var registrado = document.getElementById("registradorCorrectamente");
+
+			// Componentes
+			var div = document.createElement('div');
+			var b = document.createElement('b');
+			var center = document.createElement('center');
+			var h4 = document.createElement('h4');
+
+			// Concatenamiento de componentes
+			center.appendChild(h4);
+			b.appendChild(center);
+			div.appendChild(b);
+
+			// Poner mensaje al h4
+			h4.textContent = "Registrado correctamente";
+
+			// Clases del div
+			div.className = 'alert alert-success';
+			div.setAttribute("role", "alert");
+			// Poner en el div 
+			registrado.appendChild(div);
+
+			/** Limpiar campos **/
+	        nombre.value = "";
+	        biografia.value = "";
+	        imagen.value = "";
+	        lunes.checked = false;
+	          	lunes_inicio.value = "8:00 AM";
+	          	lunes_fin.value = "8:00 AM";
+	        martes.checked = false;
+	          	martes_inicio.value = "8:00 AM";
+	          	martes_fin.value = "8:00 AM";
+	        miercoles.checked = false;
+	          	miercoles_inicio.value = "8:00 AM";
+	         	miercoles_fin.value = "8:00 AM";
+	        jueves.checked = false;
+	          	jueves_inicio.value = "8:00 AM";
+	          	jueves_fin.value = "8:00 AM";
+	        viernes.checked = false;
+	          	viernes_inicio.value = "8:00 AM";
+	          	viernes_fin.value = "8:00 AM";
+	        sabado.checked = false;
+	          	sabado_inicio.value = "8:00 AM";
+	          	sabado_fin.value = "8:00 AM";
+	        domingo.checked = false;
+	          	domingo_inicio.value = "8:00 AM";
+	          	domingo_fin.value = "8:00 AM";
+    	}	
     </script>
 </body>
 </html>
