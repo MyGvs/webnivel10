@@ -77,9 +77,9 @@
   <div class="container">
     <div align="center"><h2 class="form-signin-heading"> Lista de entrenadores </h2></div>
     <div class="table-responsive">
-      <table class="table">
+      <table class="table table-bordered">
         <thead>
-          <tr>
+          <tr class="active">
             <td rowspan="2"><h4><b><center> Nombre </center></b></h4></td>
             <td rowspan="2"><h4><b><center> Biografía </center></b></h4></td>
             <td rowspan="2"><h4><b><center> Fecha de registro </center></b></h4></td>
@@ -87,7 +87,7 @@
             <td rowspan="2"><h4><b><center> Modificar </center></b></h4></td>
             <td rowspan="2"><h4><b><center> Eliminar </center></b></h4></td>
           </tr>
-          <tr>
+          <tr class="active">
             <td><h4><b> Lunes </b></h4></td>
             <td><h4><b> Martes </b></h4></td>
             <td><h4><b> Miercoles </b></h4></td>
@@ -364,6 +364,8 @@
         button2.setAttribute("data-toggle", "modal");
         button2.setAttribute("data-target", "#modalRemove");
 
+        // Añadir fondo color a la fila
+        tr.setAttribute("class","active");
         // Crear la fila completa
         tablaElementos.appendChild(tr);
 
