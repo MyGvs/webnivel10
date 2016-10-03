@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="images/ic_launcher.png">
+  <title>Registro de Entrenadores</title>
+
+  <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyB4JmaNIheFUZwMsjTBXCnFHKQNfpRFfXA",
+    authDomain: "formularios-81a40.firebaseapp.com",
+    databaseURL: "https://formularios-81a40.firebaseio.com",
+    storageBucket: "formularios-81a40.appspot.com",
+    messagingSenderId: "793947826055"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/navbar-fixed-top.css" rel="stylesheet">
+    <link href="dist/css/signin.css" rel="stylesheet">
+    <link href="dist/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+</head>
+
+<body>
+  <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html">
+                <img class="navbar-brand" alt="Brand" src="images/ic_launcher.png">
+              </a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Bienvenido
+            <script>
+              var user = String(localStorage.getItem("nombre"));
+              if(user != "null") document.write(","+user);
+              else document.write("usuario");
+
+            </script>
+            </a>
+          </li>
+          <li>
+            <a href="panelPaginasPersonales.html">Volver</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a id="cerrarSesion" href="#">Cerrar Sesion<span class="sr-only">(current)</span></a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div class="container">
+    <div align="center"><h2 class="form-signin-heading"> Lista de entrenadores </h2></div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <td rowspan="2"><h4><b><center> Nombre </center></b></h4></td>
+            <td rowspan="2"><h4><b><center> Biografía </center></b></h4></td>
+            <td rowspan="2"><h4><b><center> Fecha de registro </center></b></h4></td>
+            <td colspan="7"><h4><b><center> Días de reunión </center></b></h4></td>
+          </tr>
+          <tr>
+            <td><h4><b> Lunes </b></h4></td>
+            <td><h4><b> Martes </b></h4></td>
+            <td><h4><b> Miercoles </b></h4></td>
+            <td><h4><b> Jueves </b></h4></td>
+            <td><h4><b> Viernes </b></h4></td>
+            <td><h4><b> Sábado </b></h4></td>
+            <td><h4><b> Domingo </b></h4></td>
+          </tr>
+        </thead>
+        <tbody id="tabla-elementos">
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <footer class ="bs-docs-footer textcolorWhite" role="contentinfo">
+    <p>
+      <h3>Siguenos en</h3>
+    </p>
+    <p>
+      <a href="#facebook"><img src="images/social/facebook.png" width="60px" height="60px"></img></a>
+      <a href="#youtube"><img src="images/social/youtube.png" width="60px" height="60px"></img></a>
+      <a href="#instagram"><img src="images/social/instagram.png" width="60px" height="60px"></img></a>
+    </p>
+    <p >&copy; 2016 Nivel 10. All rights reserved.
+      <a href="#privacy">Privacy</a><font color=white size="3">.</font>
+      <a href="#terms">Terms of Service</a>.
+    </p>
+    </footer>
+    <script type="text/javascript">
+      var tablaElementos = document.getElementById('tabla-elementos');
+      // Crear elementos
+      var tr = document.createElement('tr');
+      var td1 = document.createElement('td');
+      var td2 = document.createElement('td');
+      var td3 = document.createElement('td');
+      var td4 = document.createElement('td');
+      var td5 = document.createElement('td');
+      var td6 = document.createElement('td');
+      var td7 = document.createElement('td');
+      var td8 = document.createElement('td');
+      var td9 = document.createElement('td');
+      var td10 = document.createElement('td');
+
+      var text1 = document.createElement('h4');
+      var text2 = document.createElement('h4');
+      var text3 = document.createElement('h4');
+      var text4 = document.createElement('h4');
+      var text5 = document.createElement('h4');
+      var text6 = document.createElement('h4');
+      var text7 = document.createElement('h4');
+      var text8 = document.createElement('h4');
+      var text9 = document.createElement('h4');
+      var text10 = document.createElement('h4');
+
+      // Estructurar los elementos
+      td1.appendChild(text1);
+      td2.appendChild(text2);
+      td3.appendChild(text3);
+      td4.appendChild(text4);
+      td5.appendChild(text5);
+      td6.appendChild(text6);
+      td7.appendChild(text7);
+      td8.appendChild(text8);
+      td9.appendChild(text9);
+      td10.appendChild(text10);
+
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
+      tr.appendChild(td5);
+      tr.appendChild(td6);
+      tr.appendChild(td7);
+      tr.appendChild(td8);
+      tr.appendChild(td9);
+      tr.appendChild(td10);
+
+      // Dandoles texto a los objetos
+      text1.textContent = "asd";
+      text2.textContent = "asd";
+      text3.textContent = "asd";
+      text4.textContent = "asd";
+      text5.textContent = "asd";
+      text6.textContent = "asd";
+      text7.textContent = "asd";
+      text8.textContent = "asd";
+      text9.textContent = "asd";
+      text10.textContent = "asd";
+
+      // Crear la fila completa
+      tablaElementos.appendChild(tr);
+
+      /** Cerrar Sesión **/
+      var cerrar = document.getElementById('cerrarSesion');
+      cerrar.addEventListener('click', function () {
+        localStorage.removeItem("nombre");
+        localStorage.removeItem("userID");
+        window.location.assign("index.html");
+      });
+    </script>
+</body>
+</html>

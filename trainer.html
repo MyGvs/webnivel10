@@ -198,7 +198,7 @@
     		var nombre = document.getElementById("nombre");
     		var biografia = document.getElementById("biografia");
     		var imagen = document.getElementById("imagen");
-    		console.log(imagen.files[0]);
+    		//console.log(imagen.files[0]);
 
     		var lunes = document.getElementById("lunes");
     			var lunes_inicio = document.getElementById("lunes_inicio");
@@ -236,31 +236,14 @@
 			}
 			today = mm+'/'+dd+'/'+yyyy;
 
-			// Points to the root reference
-			var storageRef = firebase.storage().ref();
+			//getfile
+			var file = imagen.files[0];
+			//create a storage ref
+			var storageRef = firebase.storage().ref('imagenes/'+file.name);
 
-			// Points to 'images'
-			var imagesRef = storageRef.child('images');
+			//upload file
+			var task = storageRef.put(file);
 
-			// Points to 'images/space.jpg'
-			// Note that you can use variables to create child values
-			var fileName = 'space.jpg';
-			var spaceRef = imagesRef.child(fileName);
-
-			// File path is 'images/space.jpg'
-			var path = spaceRef.fullPath
-
-			// File name is 'space.jpg'
-			var name = spaceRef.name
-
-			// Points to 'images'
-			var imagesRef = spaceRef.parent;
-			console.log(imagen.files[0].__proto__);
-			ref.put(imagen.files[0].__proto__.__proto__).then(function(snapshot) {
-			  	console.log('Uploaded a blob or file!');
-			});
-			imagen.files[0]
-			/*
 			firebase.database().ref('entrenador/').push({
 				nombre: nombre.value,
 				biografia: biografia.value,
@@ -285,10 +268,10 @@
 				domingo: domingo.checked,
 				domingo_inicio: domingo_inicio.value,
 				domingo_fin: domingo_fin.value,
-				fecha_registro: today
+				fecha_registro: today,
+				url_imagen: 'imagenes/'+file.name
 			});
-			*/
-			alert("se logro?");
+			//alert("se logro?");
     		//alert(nombre.value+" -- "+biografia.value+" -- "+lunes.checked);
     		//alert(lunes_inicio.value+"--"+lunes_fin.value);
     	}
