@@ -121,10 +121,12 @@
               <label for="biografia"> Biografía: </label>
               <textarea class="form-control" rows="3" placeholder="Ej. Experiencia de 5 años en Body Combat." id="biografia"></textarea>
             </div>
+            <!-- campo de imagen (En veremos)
             <div class="form-group input-group-lg">
               <label for="imagen"> Imágen de Perfil: </label>
               <input type="file" class="form-control" id="imagen">
             </div>
+            -->
             <div class="form-group input-group-lg form-inline">
               <label for="reunion"> Dias de Reunion: </label>
               <ul class="list-group" id="reunion">
@@ -237,7 +239,7 @@
             scrollbar: true
         });
       });
-      
+
       var tablaElementos = document.getElementById('tabla-elementos');
 
       var entrenadores = firebase.database().ref('entrenador');
@@ -348,7 +350,59 @@
       function editar_entrenador(event) {
         console.log(this.info);
         console.log("Edicion");
-        $('').modal()
+
+        // Obtenemos los campos del formulario
+        var nombre = document.getElementById("nombre");
+        var biografia = document.getElementById("biografia");
+        //var imagen = document.getElementById("imagen");
+        //console.log(imagen.files[0]);
+
+        var lunes = document.getElementById("lunes");
+          var lunes_inicio = document.getElementById("lunes_inicio");
+          var lunes_fin = document.getElementById("lunes_fin");
+        var martes = document.getElementById("martes");
+          var martes_inicio = document.getElementById("martes_inicio");
+          var martes_fin = document.getElementById("martes_fin");
+        var miercoles = document.getElementById("miercoles");
+          var miercoles_inicio = document.getElementById("miercoles_inicio");
+          var miercoles_fin = document.getElementById("miercoles_fin");
+        var jueves = document.getElementById("jueves");
+          var jueves_inicio = document.getElementById("jueves_inicio");
+          var jueves_fin = document.getElementById("jueves_fin");
+        var viernes = document.getElementById("viernes");
+          var viernes_inicio = document.getElementById("viernes_inicio");
+          var viernes_fin = document.getElementById("viernes_fin");
+        var sabado = document.getElementById("sabado");
+          var sabado_inicio = document.getElementById("sabado_inicio");
+          var sabado_fin = document.getElementById("sabado_fin");
+        var domingo = document.getElementById("domingo");
+          var domingo_inicio = document.getElementById("domingo_inicio");
+          var domingo_fin = document.getElementById("domingo_fin");
+
+        // Procedemos a cargar datos
+        nombre.value = this.info.nombre;
+        biografia.value = this.info.biografia;
+        lunes.checked = this.info.lunes;
+          lunes_inicio.value = this.info.lunes_inicio;
+          lunes_fin.value = this.info.lunes_fin;
+        martes.checked = this.info.martes;
+          martes_inicio.value = this.info.martes_inicio;
+          martes_fin.value = this.info.martes_fin;
+        miercoles.checked = this.info.miercoles;
+          miercoles_inicio.value = this.info.miercoles_inicio;
+          miercoles_fin.value = this.info.miercoles_fin;
+        jueves.checked = this.info.jueves;
+          jueves_inicio.value = this.info.jueves_inicio;
+          jueves_fin.value = this.info.jueves_fin;
+        viernes.checked = this.info.viernes;
+          viernes_inicio.value = this.info.viernes_inicio;
+          viernes_fin.value = this.info.viernes_fin;
+        sabado.checked = this.info.sabado;
+          sabado_inicio.value = this.info.sabado_inicio;
+          sabado_fin.value = this.info.sabado_fin;
+        domingo.checked = this.info.domingo;
+          domingo_inicio.value = this.info.domingo_inicio;
+          domingo_fin.value = this.info.domingo_fin;
       }
 
       /** Eliminar Entrenador **/
