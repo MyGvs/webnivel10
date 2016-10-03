@@ -117,67 +117,80 @@
     </footer>
     <script type="text/javascript">
       var tablaElementos = document.getElementById('tabla-elementos');
-      // Crear elementos
-      var tr = document.createElement('tr');
-      var td1 = document.createElement('td');
-      var td2 = document.createElement('td');
-      var td3 = document.createElement('td');
-      var td4 = document.createElement('td');
-      var td5 = document.createElement('td');
-      var td6 = document.createElement('td');
-      var td7 = document.createElement('td');
-      var td8 = document.createElement('td');
-      var td9 = document.createElement('td');
-      var td10 = document.createElement('td');
 
-      var text1 = document.createElement('h4');
-      var text2 = document.createElement('h4');
-      var text3 = document.createElement('h4');
-      var text4 = document.createElement('h4');
-      var text5 = document.createElement('h4');
-      var text6 = document.createElement('h4');
-      var text7 = document.createElement('h4');
-      var text8 = document.createElement('h4');
-      var text9 = document.createElement('h4');
-      var text10 = document.createElement('h4');
+      var entrenadores = firebase.database().ref('entrenador');
+      entrenadores.on('child_added', function(data) {
+        //console.log(data.val());
+        // Crear elementos
+        var tr = document.createElement('tr');
+        var td1 = document.createElement('td');
+        var td2 = document.createElement('td');
+        var td3 = document.createElement('td');
+        var td4 = document.createElement('td');
+        var td5 = document.createElement('td');
+        var td6 = document.createElement('td');
+        var td7 = document.createElement('td');
+        var td8 = document.createElement('td');
+        var td9 = document.createElement('td');
+        var td10 = document.createElement('td');
 
-      // Estructurar los elementos
-      td1.appendChild(text1);
-      td2.appendChild(text2);
-      td3.appendChild(text3);
-      td4.appendChild(text4);
-      td5.appendChild(text5);
-      td6.appendChild(text6);
-      td7.appendChild(text7);
-      td8.appendChild(text8);
-      td9.appendChild(text9);
-      td10.appendChild(text10);
+        var text1 = document.createElement('h4');
+        var text2 = document.createElement('h4');
+        var text3 = document.createElement('h4');
+        var text4 = document.createElement('h4');
+        var text5 = document.createElement('h4');
+        var text6 = document.createElement('h4');
+        var text7 = document.createElement('h4');
+        var text8 = document.createElement('h4');
+        var text9 = document.createElement('h4');
+        var text10 = document.createElement('h4');
 
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(td4);
-      tr.appendChild(td5);
-      tr.appendChild(td6);
-      tr.appendChild(td7);
-      tr.appendChild(td8);
-      tr.appendChild(td9);
-      tr.appendChild(td10);
+        // Estructurar los elementos
+        td1.appendChild(text1);
+        td2.appendChild(text2);
+        td3.appendChild(text3);
+        td4.appendChild(text4);
+        td5.appendChild(text5);
+        td6.appendChild(text6);
+        td7.appendChild(text7);
+        td8.appendChild(text8);
+        td9.appendChild(text9);
+        td10.appendChild(text10);
 
-      // Dandoles texto a los objetos
-      text1.textContent = "asd";
-      text2.textContent = "asd";
-      text3.textContent = "asd";
-      text4.textContent = "asd";
-      text5.textContent = "asd";
-      text6.textContent = "asd";
-      text7.textContent = "asd";
-      text8.textContent = "asd";
-      text9.textContent = "asd";
-      text10.textContent = "asd";
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        tr.appendChild(td6);
+        tr.appendChild(td7);
+        tr.appendChild(td8);
+        tr.appendChild(td9);
+        tr.appendChild(td10);
 
-      // Crear la fila completa
-      tablaElementos.appendChild(tr);
+        // Dandoles texto a los objetos
+        text1.textContent = data.val().nombre;
+        text2.textContent = data.val().biografia;
+        text3.textContent = data.val().fecha_registro;
+        if(data.val().lunes) text4.textContent = data.val().lunes_inicio+" - "+data.val().lunes_fin;
+        else text4.textContent = "-";
+        if(data.val().martes) text5.textContent = data.val().martes_inicio+" - "+data.val().martes_fin;
+        else text5.textContent = "-";
+        if(data.val().miercoles) text6.textContent = data.val().miercoles_inicio+" - "+data.val().miercoles_fin;
+        else text6.textContent = "-";
+        if(data.val().jueves) text7.textContent = data.val().jueves_inicio+" - "+data.val().jueves_fin;
+        else text7.textContent = "-";
+        if(data.val().viernes) text8.textContent = data.val().viernes_inicio+" - "+data.val().viernes_fin;
+        else text8.textContent = "-";
+        if(data.val().sabado) text9.textContent = data.val().sabado_inicio+" - "+data.val().sabado_fin;
+        else text9.textContent = "-";
+        if(data.val().domingo) text10.textContent = data.val().domingo_inicio+" - "+data.val().domingo_fin;
+        else text10.textContent = "-";
+
+        // Crear la fila completa
+        tablaElementos.appendChild(tr);
+        //addCommentElement(postElement, data.key, data.val().text, data.val().author);
+      });
 
       /** Cerrar Sesión **/
       var cerrar = document.getElementById('cerrarSesion');
