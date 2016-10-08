@@ -90,75 +90,6 @@
 		  		<label for="imagen"> Imágen de Perfil: </label>
 			    <input type="file" class="form-control" id="imagen">
 		  	</div>
-		  	<div class="form-group input-group-lg form-inline">
-				<label for="reunion"> Dias de Reunion: </label>
-				<ul class="list-group" id="reunion">
-					<li class="form-group input-group-lg">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="lunes" id="lunes"> Lunes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							</label>
-						</div>
-						<input type="text" class="form-control timepicker" id="lunes_inicio">
-						<input type="text" class="form-control timepicker" id="lunes_fin">
-					</li>
-					<li class="form-group input-group-lg">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="martes" id="martes"> Martes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							</label>
-						</div>
-						<input type="text" class="form-control timepicker" id="martes_inicio">
-						<input type="text" class="form-control timepicker" id="martes_fin">
-					</li>
-					<li class="form-group input-group-lg">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="miercoles" id="miercoles"> Miercoles&nbsp;&nbsp;
-							</label>
-						</div>
-						<input type="text" class="form-control timepicker" id="miercoles_inicio">
-						<input type="text" class="form-control timepicker" id="miercoles_fin">
-					</li>
-					<li class="form-group input-group-lg">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="jueves" id="jueves"> Jueves &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							</label>
-						</div>
-						<input type="text" class="form-control timepicker" id="jueves_inicio">
-						<input type="text" class="form-control timepicker" id="jueves_fin">
-					</li>
-					<li class="form-group input-group-lg">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="viernes" id="viernes"> Viernes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							</label>
-						</div>
-						<input type="text" class="form-control timepicker" id="viernes_inicio">
-						<input type="text" class="form-control timepicker" id="viernes_fin">
-					</li>
-					<li class="form-group input-group-lg">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="sabado" id="sabado"> Sábado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							</label>
-						</div>
-						<input type="text" class="form-control timepicker" id="sabado_inicio">
-						<input type="text" class="form-control timepicker" id="sabado_fin">
-					</li>
-					<li class="form-group input-group-lg">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" value="domingo" id="domingo"> Domingo&nbsp;&nbsp;&nbsp;
-							</label>
-						</div>
-						<input type="text" class="form-control timepicker" id="domingo_inicio">
-						<input type="text" class="form-control timepicker" id="domingo_fin">
-					</li>
-
-				</ul>
-		  	</div>
 		  	<button class="btn btn-lg btn-success btn-block" onClick="register()">Registrar</button>
 		  	<br>
 		  	<div id="registradorCorrectamente">
@@ -208,29 +139,6 @@
     		var biografia = document.getElementById("biografia");
     		var imagen = document.getElementById("imagen");
     		//console.log(imagen.files[0]);
-
-    		var lunes = document.getElementById("lunes");
-    			var lunes_inicio = document.getElementById("lunes_inicio");
-    			var lunes_fin = document.getElementById("lunes_fin");
-    		var martes = document.getElementById("martes");
-    			var martes_inicio = document.getElementById("martes_inicio");
-    			var martes_fin = document.getElementById("martes_fin");
-    		var miercoles = document.getElementById("miercoles");
-    			var miercoles_inicio = document.getElementById("miercoles_inicio");
-    			var miercoles_fin = document.getElementById("miercoles_fin");
-    		var jueves = document.getElementById("jueves");
-    			var jueves_inicio = document.getElementById("jueves_inicio");
-    			var jueves_fin = document.getElementById("jueves_fin");
-    		var viernes = document.getElementById("viernes");
-    			var viernes_inicio = document.getElementById("viernes_inicio");
-    			var viernes_fin = document.getElementById("viernes_fin");
-    		var sabado = document.getElementById("sabado");
-    			var sabado_inicio = document.getElementById("sabado_inicio");
-    			var sabado_fin = document.getElementById("sabado_fin");
-    		var domingo = document.getElementById("domingo");
-    			var domingo_inicio = document.getElementById("domingo_inicio");
-    			var domingo_fin = document.getElementById("domingo_fin");
-
     		var today = new Date();
 			var dd = today.getDate();
 			var mm = today.getMonth()+1; //January is 0!
@@ -256,27 +164,6 @@
 			firebase.database().ref('entrenador/').push({
 				nombre: nombre.value,
 				biografia: biografia.value,
-				lunes: lunes.checked,
-				lunes_inicio: lunes_inicio.value,
-				lunes_fin: lunes_fin.value,
-				martes: martes.checked,
-				martes_inicio: martes_inicio.value,
-				martes_fin: martes_fin.value,
-				miercoles: miercoles.checked,
-				miercoles_inicio: miercoles_inicio.value,
-				miercoles_fin: miercoles_fin.value,
-				jueves: jueves.checked,
-				jueves_inicio: jueves_inicio.value,
-				jueves_fin: jueves_fin.value,
-				viernes: viernes.checked,
-				viernes_inicio: viernes_inicio.value,
-				viernes_fin: viernes_fin.value,
-				sabado: sabado.checked,
-				sabado_inicio: sabado_inicio.value,
-				sabado_fin: sabado_fin.value,
-				domingo: domingo.checked,
-				domingo_inicio: domingo_inicio.value,
-				domingo_fin: domingo_fin.value,
 				fecha_registro: today,
 				url_imagen: 'imagenes/'+file.name
 			});
@@ -308,27 +195,6 @@
 	        nombre.value = "";
 	        biografia.value = "";
 	        imagen.value = "";
-	        lunes.checked = false;
-	          	lunes_inicio.value = "8:00 AM";
-	          	lunes_fin.value = "8:00 AM";
-	        martes.checked = false;
-	          	martes_inicio.value = "8:00 AM";
-	          	martes_fin.value = "8:00 AM";
-	        miercoles.checked = false;
-	          	miercoles_inicio.value = "8:00 AM";
-	         	miercoles_fin.value = "8:00 AM";
-	        jueves.checked = false;
-	          	jueves_inicio.value = "8:00 AM";
-	          	jueves_fin.value = "8:00 AM";
-	        viernes.checked = false;
-	          	viernes_inicio.value = "8:00 AM";
-	          	viernes_fin.value = "8:00 AM";
-	        sabado.checked = false;
-	          	sabado_inicio.value = "8:00 AM";
-	          	sabado_fin.value = "8:00 AM";
-	        domingo.checked = false;
-	          	domingo_inicio.value = "8:00 AM";
-	          	domingo_fin.value = "8:00 AM";
     	}	
     </script>
 </body>

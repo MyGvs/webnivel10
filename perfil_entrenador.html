@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="images/ic_launcher.png">
+  <title>Registro de Entrenadores</title>
+
+  <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyB4JmaNIheFUZwMsjTBXCnFHKQNfpRFfXA",
+    authDomain: "formularios-81a40.firebaseapp.com",
+    databaseURL: "https://formularios-81a40.firebaseio.com",
+    storageBucket: "formularios-81a40.appspot.com",
+    messagingSenderId: "793947826055"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="dist/css/navbar-fixed-top.css" rel="stylesheet">
+  <link href="dist/css/signin.css" rel="stylesheet">
+  <link href="dist/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="dist/js/bootstrap.min.js"></script>
+  <script src="assets/js/docs.min.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+</head>
+
+<body>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="index.html">
+          <img class="navbar-brand" alt="Brand" src="images/ic_launcher.png">
+        </a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a id="cerrarSesion" href="#">Cerrar Sesion<span class="sr-only">(current)</span></a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4 col-md-4"> 
+        <div id="imagenEntrenador"></div>
+      </div>
+      <div class="col-xs-8 col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <label> Información del entrenador </label> 
+          </div>
+          <div class="panel-body">
+            <label> Nombre: </label> 
+            <h5 id="nombreEntrenador">  </h5>
+          </div>
+          <div class="panel-body">
+            <label> Biografía: </label>
+            <div class="campo">
+              <h5 id="biografiaEntrenador">  </h5>
+            </div>
+          </div>
+          <div class="panel-body">
+            <label> Fecha de registro: </label>
+            <div class="campo">
+              <h5 id="fechaRegistroEntrenador">  </h5>
+            </div>
+          </div>
+          <div class="panel-footer text-right">
+            <div id="botonModificar">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Edicion -->
+  <div class="modal fade" id="modalEdition" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"> Edición de entrenador </h4>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="return false">
+            <div class="form-group input-group-lg">
+              <label for="nombre"> Nombre: </label>
+              <input type="text" class="form-control" placeholder="Ej. Juan Perez" id="nombreNuevo">
+            </div>
+            <div class="form-group input-group-lg">
+              <label for="biografia"> Biografía: </label>
+              <textarea class="form-control" rows="3" placeholder="Ej. Experiencia de 5 años en Body Combat." id="biografiaNuevo"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"> Cerrar </button>
+          <button type="button" class="btn btn-primary" id="guardar_cambios"> Guardar Cambios </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class ="bs-docs-footer textcolorWhite" role="contentinfo">
+    <p>
+      <h3>Siguenos en</h3>
+    </p>
+    <p>
+      <a href="#facebook"><img src="images/social/facebook.png" width="60px" height="60px"></img></a>
+      <a href="#youtube"><img src="images/social/youtube.png" width="60px" height="60px"></img></a>
+      <a href="#instagram"><img src="images/social/instagram.png" width="60px" height="60px"></img></a>
+    </p>
+    <p>&copy; 2016 Nivel 10. All rights reserved.
+      <a href="#privacy">Privacy</a><font color=white size="3">.</font>
+      <a href="#terms">Terms of Service</a>.
+    </p>
+  </footer>
+  <script type="text/javascript">
+    var iniciado = false;
+    if(!iniciado){
+      init();
+      iniciado = true;
+    }
+
+    /** Inicializar la app **/
+    function init(){
+      /** Datos **/
+      var entrenadores = firebase.database().ref('entrenador/'+'-KTWWhx7gIwdV4epEP0u');
+      entrenadores.on('value', function(data) {
+        //console.log(data.val());
+        setImage(data.val().url_imagen);
+        setInfo(data.val());
+        createEdit(data.val(), data.key);
+      });
+    }
+
+    /** Imagen **/
+    function setImage(urlImagen){
+      /** Imagen **/
+      var storage = firebase.storage();
+      var pathReference = storage.ref(urlImagen);
+      pathReference.getDownloadURL().then(function(url) {
+        // Insert url into an <img> tag to "download"
+        //console.log(url);
+
+        var divImg = document.getElementById('imagenEntrenador');
+        var img = document.createElement('img');
+        img.setAttribute("src", url);
+        divImg.appendChild(img);
+      }).catch(function(error) {
+        switch (error.code) {
+          case 'storage/object_not_found':
+            // File doesn't exist
+            break;
+
+          case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+
+          case 'storage/canceled':
+            // User canceled the upload
+            break;
+          case 'storage/unknown':
+            // Unknown error occurred, inspect the server response
+            break;
+        }
+      });
+    }
+
+    /** Información básica del entrenador **/
+    function setInfo(data){
+      //console.log(data);
+      var divNombre = document.getElementById('nombreEntrenador');
+      var divBiografia = document.getElementById('biografiaEntrenador');
+      var divFecha = document.getElementById('fechaRegistroEntrenador');
+
+      divNombre.innerHTML = data.nombre;
+      divBiografia.innerHTML = data.biografia;
+      divFecha.innerHTML = data.fecha_registro;
+    }
+
+    /** Crear el boton para editar el perfil**/
+    function createEdit(data, key){
+      //console.log(data);
+      var div = document.getElementById('botonModificar');
+      var button = document.createElement('button');
+      // Añadir texto al boton
+      button.textContent = "Editar";
+
+      // Añadir bootstrap
+      button.className = 'btn btn-warning';
+
+      // Acción del boton
+      button.addEventListener('click', editar_entrenador);
+
+      // Creando modal de Edición
+      button.setAttribute("data-toggle", "modal");
+      button.setAttribute("data-target", "#modalEdition");
+
+      // Pasar información
+      button.data = data;
+      button.key = key;
+
+      div.appendChild(button);
+    }
+
+    /** Cargar el modal de edición **/
+    function editar_entrenador(){
+
+      // Obtenemos los campos del formulario
+      var nombre = document.getElementById("nombreNuevo");
+      var biografia = document.getElementById("biografiaNuevo");
+
+      nombre.value = this.data.nombre;
+      biografia.value = this.data.biografia;
+
+      // Info en el boton de guardar cambios
+      var button = document.getElementById("guardar_cambios");
+      button.addEventListener('click', update);
+      button.data = this.data;
+      button.key = this.key;
+    }
+
+    /** Editar entrenador **/
+    function update(){
+      // Obtenemos los campos del formulario
+      var nombre = document.getElementById("nombreNuevo");
+      var biografia = document.getElementById("biografiaNuevo");
+
+      var newData = {
+        nombre: nombre.value,
+        biografia: biografia.value,
+        fecha_registro: this.data.fecha_registro,
+        url_imagen: this.data.url_imagen
+      };
+
+      var updates = {};
+      updates['/entrenador/' + this.key] = newData;
+
+      firebase.database().ref().update(updates);
+      window.location.assign("perfil_entrenador.html");
+      // console.log(nombre.value);
+      //console.log(biografia.value);
+      //console.log(this.data);
+      //console.log(this.key);
+    }
+    /** Cerrar Sesión **/
+    var cerrar = document.getElementById('cerrarSesion');
+    cerrar.addEventListener('click', function () {
+      localStorage.removeItem("nombre");
+      localStorage.removeItem("userID");
+      window.location.assign("index.html");
+    });
+  </script>
+</body>
+</html>

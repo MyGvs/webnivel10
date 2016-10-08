@@ -52,3 +52,12 @@
 .navbar-wrapper .navbar .container {
   width: auto;
 }
+
+
+.campo{
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.text-right{
+  text-align: right;
+}
