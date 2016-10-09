@@ -52,15 +52,17 @@
         </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Bienvenid@,
-                <script>
-                  var user = String(localStorage.getItem("name"));
-                  if(user != "null") document.write(user);
-                  else document.write("usuario");
+              <li class="active">
+                <a href="#">Bienvenid@,
+                  <script>
+                    var user = String(localStorage.getItem("name"));
+                    if(user != "null") document.write(user);
+                    else document.write("usuario");
 
-                </script>
+                  </script>
                 </a>
-                <li><a href="panelDeControl.html">Panel de Control</a></li>
+              </li>
+              <li><a href="#">Panel de Control</a></li>
               </li>
               <li>
                 <a href="#">Páginas Personales</a>
@@ -72,34 +74,72 @@
           </div>
       </div>
     </div>
-    <div class="form-signin">
+    <div class="form-signin" id="buttons">
       <button class="btn btn-lg btn-primary btn-block" type="submit" id="agregarPagina">Página Personal</button>
-      
+
     </div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script>
+      var iniciado = false;
+      if(!iniciado){
+        init();
+        iniciado = true;
+      }
 
-    /*if(localStorage.getItem("userID")){
-    }else{
-      window.location.assign("index.html");
-    }*/
-    var agregarPagina = document.getElementById('agregarPagina');
-    var listarPaginas = document.getElementById('listarPaginas');
+      /** Inicializar la app **/
+      function init(){
+        /** Datos **/
+        var userId = localStorage.getItem("key");
+        var entrenadores = firebase.database().ref('entrenador/'+userId);
+        entrenadores.on('value', function(data) {
+          //console.log(data.key);
+          if(data.val() != null) addLinkTrainer(userId);
+        });
+      }
+      /*if(localStorage.getItem("userID")){
+      }else{
+        window.location.assign("index.html");
+      }*/
+      var agregarPagina = document.getElementById('agregarPagina');
+      //var listarPaginas = document.getElementById('listarPaginas');
 
-    agregarPagina.addEventListener('click', function () {
-      window.location.assign("trainer.html");
-    });
-    listarPaginas.addEventListener('click', function () {
-      window.location.assign("listarPaginas.html");
-    });
-    var cerrar = document.getElementById('cerrarSesion');
-    cerrar.addEventListener('click', function () {
-      localStorage.removeItem("nombre");
-      localStorage.removeItem("userID");
-      window.location.assign("index.html");
-    });
+      agregarPagina.addEventListener('click', function () {
+        window.location.assign("trainer.html");
+      });
+      /*
+      listarPaginas.addEventListener('click', function () {
+        window.location.assign("listarPaginas.html");
+      });
+      */
+
+      /** Cerrar sesión **/
+      var cerrar = document.getElementById('cerrarSesion');
+      cerrar.addEventListener('click', function () {
+        localStorage.removeItem("nombre");
+        localStorage.removeItem("userID");
+        window.location.assign("index.html");
+      });
+
+      /** Crear el boton del trainer **/
+      function addLinkTrainer(id){
+
+        var div = document.getElementById('buttons');
+        var button = document.createElement('a');
+        button.textContent = "Link personal del entrenador";
+        button.setAttribute("class","btn btn-lg btn-primary btn-block");
+        button.setAttribute("type","submit");
+        button.setAttribute("id","linkPersonal");
+        button.setAttribute("href", "perfil_entrenador.html?id="+id);
+        button.data = {
+          id: localStorage.getItem("id"),
+          key: localStorage.getItem("key")
+        };
+
+        div.appendChild(button);
+        console.log("Lijto pariente");
+      }
     </script>
   </body>
 </html>
