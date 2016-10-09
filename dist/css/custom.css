@@ -61,3 +61,7 @@
 .text-right{
   text-align: right;
 }
+
+textarea{
+    resize:vertical;
+}

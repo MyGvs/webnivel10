@@ -51,14 +51,14 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Bienvenido
-						<script>
-							var user = String(localStorage.getItem("nombre"));
-							if(user != "null") document.write(","+user);
-							else document.write("usuario");
-
-						</script>
-						</a>
+					<li class="active">
+						<a href="#">Bienvenid@,
+							<script>
+								var user = String(localStorage.getItem("name"));
+								if(user != "null") document.write(user);
+								else document.write("usuario");
+							</script>
+		                </a>
 					</li>
 					<li>
 						<a href="panelPaginasPersonales.html">Volver</a>
@@ -131,6 +131,7 @@
 
 		/** Registrar entrenador **/
     	var register = function(){
+    		var userId = localStorage.getItem("key");
     		var nombre = document.getElementById("nombre");
     		var biografia = document.getElementById("biografia");
     		var imagen = document.getElementById("imagen");
@@ -157,11 +158,13 @@
 			//upload file
 			var task = storageRef.put(file);
 
-			firebase.database().ref('entrenador/').push({
-				nombre: nombre.value,
-				biografia: biografia.value,
-				fecha_registro: today,
-				url_imagen: 'imagenes/'+file.name
+			firebase.database().ref('entrenador/'+userId).set({
+				perfil: {
+					nombre: nombre.value,
+					biografia: biografia.value,
+					fecha_registro: today,
+					url_imagen: 'imagenes/'+file.name
+				}
 			});
 
 			/** Alerta de confirmacion de registro **/
@@ -191,6 +194,7 @@
 	        nombre.value = "";
 	        biografia.value = "";
 	        imagen.value = "";
+	        //window.location.assign("panelPaginasPersonales.html");
     	}
     </script>
 </body>

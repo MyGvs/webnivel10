@@ -40,57 +40,129 @@
 
 <body>
   <!-- Fixed navbar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href="index.html">
-          <img class="navbar-brand" alt="Brand" src="images/ic_launcher.png">
-        </a>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="index.html">
+            <img class="navbar-brand" alt="Brand" src="images/ic_launcher.png">
+          </a>
+        </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active">
+                <a href="#">Bienvenid@,
+                  <script>
+                    var user = String(localStorage.getItem("name"));
+                    if(user != "null") document.write(user);
+                    else document.write("usuario");
+
+                  </script>
+                </a>
+              </li>
+              <li><a href="#">Panel de Control</a></li>
+              </li>
+              <li>
+                <a href="#">Páginas Personales</a>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a id="cerrarSesion" href="#">Cerrar Sesion<span class="sr-only">(current)</span></a></li>
+            </ul>
+          </div>
       </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a id="cerrarSesion" href="#">Cerrar Sesion<span class="sr-only">(current)</span></a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
     </div>
-  </nav>
   <br>
   <div class="container">
     <div class="row">
       <div class="col-xs-4 col-md-4"> 
         <div id="imagenEntrenador"></div>
       </div>
-      <div class="col-xs-8 col-md-8">
+      <div class="col-xs-0 col-md-1"> 
+      </div>
+      <div class="col-xs-8 col-md-7">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <label> Información del entrenador </label> 
+            <label><h4><b> Información del entrenador </b></h4></label> 
           </div>
           <div class="panel-body">
-            <label> Nombre: </label> 
-            <h5 id="nombreEntrenador">  </h5>
+            <h4>
+              <label> Nombre: </label> 
+              <h4 id="nombreEntrenador">  </h4>
+            </h4>
           </div>
           <div class="panel-body">
-            <label> Biografía: </label>
-            <div class="campo">
-              <h5 id="biografiaEntrenador">  </h5>
-            </div>
+            <h4>
+              <label> Biografía: </label>
+              <div class="campo">
+                <h4 id="biografiaEntrenador">  </h4>
+              </div>
+            </h4>
           </div>
           <div class="panel-body">
-            <label> Fecha de registro: </label>
-            <div class="campo">
-              <h5 id="fechaRegistroEntrenador">  </h5>
-            </div>
+            <h4>
+              <label> Fecha de registro: </label>
+              <div class="campo">
+                <h4 id="fechaRegistroEntrenador">  </h4>
+              </div>
+            </h4>
           </div>
           <div class="panel-footer text-right">
             <div id="botonModificar">
               
             </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12"> 
+        <center> PROSPECTO </center>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-5"> 
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <label><h4><b> Videos </b></h4></label> 
+          </div>
+          <div class="panel-body">
+            <h4>
+              <label> Lunes: </label> 
+              <a href="https://livestream.com/accounts/20125261/events/6251835"> Reunión de oportunidad </a>
+            </h4>
+          </div>
+          <div class="panel-body">
+            <h4>
+              <label> Jueves: </label>
+              <a href="https://livestream.com/accounts/20125261/events/6307112"> Seminario de nutrición </a>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-0 col-md-2"> 
+      </div>
+      <div class="col-xs-6 col-md-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <label><h4><b> Horarios Reuniones </b></h4></label> 
+          </div>
+          <div class="panel-body">
+            <h4>
+              <label> Lunes: </label> 
+              22:00
+            </h4>
+          </div>
+          <div class="panel-body">
+            <h4>
+              <label> Jueves: </label>
+              22:00
+            </h4>
           </div>
         </div>
       </div>
@@ -143,11 +215,21 @@
       init();
       iniciado = true;
     }
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
     /** Inicializar la app **/
     function init(){
       /** Datos **/
-      var entrenadores = firebase.database().ref('entrenador/'+'-KTWWhx7gIwdV4epEP0u');
+      var userId = getParameterByName("id")
+      var entrenadores = firebase.database().ref('entrenador/'+userId+'/perfil/');
       entrenadores.on('value', function(data) {
         //console.log(data.val());
         setImage(data.val().url_imagen);
