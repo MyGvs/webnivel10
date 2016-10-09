@@ -74,9 +74,8 @@
           </div>
       </div>
     </div>
-<<<<<<< HEAD
-    <div class="form-signin">
-      <a class="btn btn-lg btn-primary btn-block" type="submit" href="trainer.html">Página Personal</a>
+    <div class="form-signin" id="buttons">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="agregarPagina">Página Personal</button>
       <a class="btn btn-lg btn-primary btn-block " type="button">
         Registro general <span class="badge">4</span>
       </a>
@@ -86,14 +85,8 @@
       <a class="btn btn-lg btn-primary btn-block" type="button">
         Registro seminarios (Jueves) <span class="badge">4</span>
       </a>
-=======
-    <div class="form-signin" id="buttons">
-      <button class="btn btn-lg btn-primary btn-block" type="submit" id="agregarPagina">Página Personal</button>
-
->>>>>>> 16e1ed4753191df2301b998f54182736e741bbb5
     </div>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script>
       var iniciado = false;
@@ -104,6 +97,7 @@
 
       /** Inicializar la app **/
       function init(){
+        console.log("init");
         /** Datos **/
         var userId = localStorage.getItem("key");
         var entrenadores = firebase.database().ref('entrenador/'+userId);
@@ -117,17 +111,9 @@
         window.location.assign("index.html");
       }*/
       var agregarPagina = document.getElementById('agregarPagina');
-      //var listarPaginas = document.getElementById('listarPaginas');
-
       agregarPagina.addEventListener('click', function () {
         window.location.assign("trainer.html");
       });
-      /*
-      listarPaginas.addEventListener('click', function () {
-        window.location.assign("listarPaginas.html");
-      });
-      */
-
       /** Cerrar sesión **/
       var cerrar = document.getElementById('cerrarSesion');
       cerrar.addEventListener('click', function () {
@@ -138,20 +124,6 @@
 
       /** Crear el boton del trainer **/
       function addLinkTrainer(id){
-
-<<<<<<< HEAD
-    /*if(localStorage.getItem("userID")){
-    }else{
-      window.location.assign("index.html");
-    }*/
-    var cerrar = document.getElementById('cerrarSesion');
-    cerrar.addEventListener('click', function () {
-      localStorage.removeItem("name");
-      localStorage.removeItem("key");
-      localStorage.removeItem("id");
-      window.location.assign("index.html");
-    });
-=======
         var div = document.getElementById('buttons');
         var button = document.createElement('a');
         button.textContent = "Link personal del entrenador";
@@ -167,7 +139,6 @@
         div.appendChild(button);
         console.log("Lijto pariente");
       }
->>>>>>> 16e1ed4753191df2301b998f54182736e741bbb5
     </script>
   </body>
 </html>
