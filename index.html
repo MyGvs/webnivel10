@@ -7,8 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="images/ic_launcher.png">
     <title>Entrenadores</title>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -22,9 +23,55 @@
         <h2 class="form-signin-heading">Entrenadores</h2>
         <label for="inputEmail" class="sr-only">Código</label>
         <input type="text" id="inputCodigo" class="form-control" placeholder="Código" required autofocus>
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+        <div align="center"><font color="blue"><h4 id="errorLabel"> </h4></font></div>
+        <button id="loginButton" class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
       </div>
     </div>
+    <script>
+    var loginButton = document.getElementById("loginButton");
+    var inputCodigo = document.getElementById('inputCodigo');
+      loginButton.addEventListener('click', function () {
+        Login(document.getElementById("inputCodigo").value);
+      });
+      function Login(codigo){
+        if(codigo != ""){
+          var ref = new Firebase("https://n10.firebaseio.com/asesor");
+          var valido = false;
+          ref.orderByChild("memberID").equalTo(codigo.replace(/\s/g, '')).on("child_added", function(snapshot) {
+            var asesor = snapshot.val();
+            var nombreAsesor = asesor.firstName +" "+ asesor.lastName;
+            var id = asesor.memberID;
+            var key = snapshot.key();
+            localStorage.setItem("name", nombreAsesor);
+            localStorage.setItem("key", id);
+            localStorage.setItem("id", id);
+            valido = true;
+          });
+          ref.once('value', function(snapshot) {
+            if(valido){
+              //redirigir
+              document.getElementById('errorLabel').innerHTML = "";
+              window.location.assign("panelPaginasPersonales.html");
+            }else{
+              document.getElementById('errorLabel').innerHTML = "ID de Entrenador no válido.";
+            }
+          });
+        }else{
+          document.getElementById('errorLabel').innerHTML = "Ingrese su ID de Entrenador.";
+        }
+      }
+      function attachTextListener(input, func) {
+        if (window.addEventListener) {
+          input.addEventListener('input', func, false);
+        } else
+        input.attachEvent('onpropertychange', function() {
+          func.call(input);
+        });
+      }
+      attachTextListener(inputCodigo, function() {
+        var converted = this.value.toUpperCase();
+        document.getElementById('inputCodigo').value = converted;
+      });
+    </script>
   </body>
 </html>

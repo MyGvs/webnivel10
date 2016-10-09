@@ -52,12 +52,12 @@
         </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Bienvenido
+              <li class="active"><a href="#">Bienvenid@,
                 <script>
-                  var user = String(localStorage.getItem("nombre"));
-                  if(user != "null") document.write(","+user);
+                  var user = String(localStorage.getItem("name"));
+                  if(user != "null") document.write(user);
                   else document.write("usuario");
-                  
+
                 </script>
                 </a>
                 <li><a href="panelDeControl.html">Panel de Control</a></li>
@@ -73,8 +73,8 @@
       </div>
     </div>
     <div class="form-signin">
-      <button class="btn btn-lg btn-primary btn-block" type="submit" id="agregarPagina">Agregar Página Personal</button>
-      <button class="btn btn-lg btn-primary btn-block margintop" type="submit" id="listarPaginas">Lista de Páginas Personales</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="agregarPagina">Página Personal</button>
+      
     </div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
