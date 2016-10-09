@@ -56,13 +56,7 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="active">
-                <a href="#">Bienvenid@,
-                  <script>
-                    var user = String(localStorage.getItem("name"));
-                    if(user != "null") document.write(user);
-                    else document.write("usuario");
-
-                  </script>
+                <a href="#">Bienvenid@, usuario
                 </a>
               </li>
               <li><a href="#">Panel de Control</a></li>
@@ -81,7 +75,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-4 col-md-4"> 
-        <div id="imagenEntrenador"></div>
+        <div id="imagenEntrenador" class="imagenPerfil"></div>
       </div>
       <div class="col-xs-0 col-md-1"> 
       </div>
@@ -104,19 +98,6 @@
               </div>
             </h4>
           </div>
-          <div class="panel-body">
-            <h4>
-              <label> Fecha de registro: </label>
-              <div class="campo">
-                <h4 id="fechaRegistroEntrenador">  </h4>
-              </div>
-            </h4>
-          </div>
-          <div class="panel-footer text-right">
-            <div id="botonModificar">
-              
-            </div>
-          </div> 
         </div>
       </div>
     </div>
@@ -167,32 +148,10 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- Modal Edicion -->
-  <div class="modal fade" id="modalEdition" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel"> Edición de entrenador </h4>
-        </div>
-        <div class="modal-body">
-          <form onsubmit="return false">
-            <div class="form-group input-group-lg">
-              <label for="nombre"> Nombre: </label>
-              <input type="text" class="form-control" placeholder="Ej. Juan Perez" id="nombreNuevo">
-            </div>
-            <div class="form-group input-group-lg">
-              <label for="biografia"> Biografía: </label>
-              <textarea class="form-control" rows="3" placeholder="Ej. Experiencia de 5 años en Body Combat." id="biografiaNuevo"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal"> Cerrar </button>
-          <button type="button" class="btn btn-primary" id="guardar_cambios"> Guardar Cambios </button>
-        </div>
-      </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <h5 id="codigoEntrenador"> </h5>
+      </div> 
     </div>
   </div>
   <footer class ="bs-docs-footer textcolorWhite" role="contentinfo">
@@ -233,8 +192,7 @@
       entrenadores.on('value', function(data) {
         //console.log(data.val());
         setImage(data.val().url_imagen);
-        setInfo(data.val());
-        createEdit(data.val(), data.key);
+        setInfo(data.val(), userId);
       });
     }
 
@@ -272,81 +230,15 @@
     }
 
     /** Información básica del entrenador **/
-    function setInfo(data){
+    function setInfo(data, key){
       //console.log(data);
       var divNombre = document.getElementById('nombreEntrenador');
       var divBiografia = document.getElementById('biografiaEntrenador');
-      var divFecha = document.getElementById('fechaRegistroEntrenador');
+      var codigo = document.getElementById('codigoEntrenador');
 
       divNombre.innerHTML = data.nombre;
       divBiografia.innerHTML = data.biografia;
-      divFecha.innerHTML = data.fecha_registro;
-    }
-
-    /** Crear el boton para editar el perfil**/
-    function createEdit(data, key){
-      //console.log(data);
-      var div = document.getElementById('botonModificar');
-      var button = document.createElement('button');
-      // Añadir texto al boton
-      button.textContent = "Editar";
-
-      // Añadir bootstrap
-      button.className = 'btn btn-warning';
-
-      // Acción del boton
-      button.addEventListener('click', editar_entrenador);
-
-      // Creando modal de Edición
-      button.setAttribute("data-toggle", "modal");
-      button.setAttribute("data-target", "#modalEdition");
-
-      // Pasar información
-      button.data = data;
-      button.key = key;
-
-      div.appendChild(button);
-    }
-
-    /** Cargar el modal de edición **/
-    function editar_entrenador(){
-
-      // Obtenemos los campos del formulario
-      var nombre = document.getElementById("nombreNuevo");
-      var biografia = document.getElementById("biografiaNuevo");
-
-      nombre.value = this.data.nombre;
-      biografia.value = this.data.biografia;
-
-      // Info en el boton de guardar cambios
-      var button = document.getElementById("guardar_cambios");
-      button.addEventListener('click', update);
-      button.data = this.data;
-      button.key = this.key;
-    }
-
-    /** Editar entrenador **/
-    function update(){
-      // Obtenemos los campos del formulario
-      var nombre = document.getElementById("nombreNuevo");
-      var biografia = document.getElementById("biografiaNuevo");
-
-      var newData = {
-        nombre: nombre.value,
-        biografia: biografia.value,
-        fecha_registro: this.data.fecha_registro,
-        url_imagen: this.data.url_imagen
-      };
-
-      var updates = {};
-      updates['/entrenador/' + this.key] = newData;
-
-      firebase.database().ref().update(updates);
-      window.location.assign("perfil_entrenador.html");
-      // console.log(nombre.value);
-      //console.log(biografia.value);
-      //console.log(this.data);
-      //console.log(this.key);
+      codigo.innerHTML = "Ingresa el código <b>"+key+"</b>";
     }
     /** Cerrar Sesión **/
     var cerrar = document.getElementById('cerrarSesion');

@@ -102,7 +102,7 @@
         var userId = localStorage.getItem("key");
         var entrenadores = firebase.database().ref('entrenador/'+userId);
         entrenadores.on('value', function(data) {
-          //console.log(data.key);
+          console.log(data.key);
           if(data.val() != null) addLinkTrainer(userId);
         });
       }

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/ic_launcher.png">
+    <title>Registro de Entrenadores</title>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+      apiKey: "AIzaSyB4JmaNIheFUZwMsjTBXCnFHKQNfpRFfXA",
+      authDomain: "formularios-81a40.firebaseapp.com",
+      databaseURL: "https://formularios-81a40.firebaseio.com",
+      storageBucket: "formularios-81a40.appspot.com",
+      messagingSenderId: "793947826055"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/navbar-fixed-top.css" rel="stylesheet">
+    <link href="dist/css/signin.css" rel="stylesheet">
+    <link href="dist/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+    <!-- Excel -->
+    <script src="dist/js/excellentexport.js"></script>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <br/>
+      <table id="datatable" class="table">
+        <tr>
+          <th> Key </th>
+          <th> Nombre </th>
+          <th> Biografía </th>
+          <th> Fecha de registro </th>
+          <th> Url de imagen </th>
+        </tr>
+      </table>
+    </div>
+    <a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Reporte');">Export to Excel</a>
+    <script type="text/javascript">
+      var iniciado = false;
+      if(!iniciado){
+        init();
+        iniciado = true;
+      }
+      /** Inicializar la app **/
+      function init(){
+        createTable();
+      }
+      function createTable(){
+        // Crear un reporte de entrenadores
+        var table = document.getElementById('datatable');
+
+        /** Datos **/
+        var entrenadores = firebase.database().ref('entrenador/');
+        entrenadores.on('child_added', function(data) {
+          console.log(data.val());
+          var row = table.insertRow(1);
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.key;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().perfil.nombre;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().perfil.biografia;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().perfil.fecha_registro;          
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().perfil.url_imagen;
+        });
+      }
+    </script>
+  </body>
+</html>
