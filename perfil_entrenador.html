@@ -79,14 +79,6 @@
           </div>
           <div class="panel-body">
             <h4>
-              <label> Código: </label>
-              <div class="campo">
-                <h4 id="idEntrenador">  </h4>
-              </div>
-            </h4>
-          </div>
-          <div class="panel-body">
-            <h4>
               <label> Nombre: </label>
               <h4 id="nombreEntrenador">  </h4>
             </h4>
@@ -166,7 +158,7 @@
               </div>
               <center>
                 <h3>Ingresa el Código:</h3>
-                <h1 id="codigoEntrenador"> </h1>
+                <h1 id="idEntrenador"> </h1>
               </center>
               <br>
               <!--<button id="registro" class="btn btn-lg btn-primary btn-block" onClick="register()">Registrame</button>-->
@@ -301,13 +293,11 @@
       //console.log(data);
       var divNombre = document.getElementById('nombreEntrenador');
       var divBiografia = document.getElementById('biografiaEntrenador');
-      var divCodigo = document.getElementById('idEntrenador');
-      var codigo = document.getElementById('codigoEntrenador');
+      var codigo = document.getElementById('idEntrenador');
 
       divNombre.innerHTML = data.nombre;
       divBiografia.innerHTML = data.biografia;
-      divCodigo.innerHTML = data.codigo;
-      codigo.innerHTML = "Ingresa el código <b>"+key+"</b>";
+      codigo.innerHTML = "Ingresa el código <b>"+data.codigo+"</b>";
     }
   </script>
 </body>
