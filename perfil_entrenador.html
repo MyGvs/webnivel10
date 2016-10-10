@@ -49,24 +49,17 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="index.html">
+        <a href="http://nivel10.org/">
           <img class="navbar-brand" alt="Brand" src="images/ic_launcher.png">
         </a>
       </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="#">Bienvenid@, usuario
+              <a href="#">Perfil de Entrenador
               </a>
             </li>
-            <li><a href="#">Panel de Control</a></li>
-            </li>
-            <li>
-              <a href="#">Páginas Personales</a>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a id="cerrarSesion" href="#">Cerrar Sesion<span class="sr-only">(current)</span></a></li>
+            <li><a href="http://nivel10.org/appnivel10/terminos-de-servicio.html">Privacidad</a></li>
           </ul>
         </div>
     </div>
@@ -74,19 +67,19 @@
   <br>
   <div class="container">
     <div class="row">
-      <div class="col-xs-4 col-md-4"> 
+      <div class="col-xs-4 col-md-4">
         <div id="imagenEntrenador" class="imagenPerfil"></div>
       </div>
-      <div class="col-xs-0 col-md-1"> 
+      <div class="col-xs-0 col-md-1">
       </div>
       <div class="col-xs-8 col-md-7">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <label><h4><b> Información del entrenador </b></h4></label> 
+            <label><h4><b> Información del entrenador </b></h4></label>
           </div>
           <div class="panel-body">
             <h4>
-              <label> Nombre: </label> 
+              <label> Nombre: </label>
               <h4 id="nombreEntrenador">  </h4>
             </h4>
           </div>
@@ -102,19 +95,87 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-12"> 
-        <center> PROSPECTO </center>
+      <div class="col-xs-12 col-md-12">
+        <!-- FORMULARIO -->
+        <div class="container">
+            <form onsubmit="return false">
+              <div align="center"><h2 class="form-signin-heading">Registro</h2></div>
+              <div class="alert alert-danger" role="alert" id="timeError"></div>
+              <div class="form-group input-group-lg">
+                  <label for="inputNombre" >Nombre:</label>
+                  <input type="text" id="inputNombre" class="form-control" placeholder="ingresa tu nombre..." aria-describedby="sizing-addon1" required>
+              </div>
+
+              <div class="form-group input-group-lg">
+                  <label for="inputEmail" >Email:</label>
+                  <input type="email" id="inputEmail" class="form-control" placeholder="ingresa tu email..." aria-describedby="sizing-addon1" required>
+              </div>
+
+              <div class="form-group input-group-lg">
+                <label for="inputCelular" >Celular:</label>
+                  <input type="tel" id="inputCelular" class="form-control" placeholder="ingresa tu teléfono celular..." aria-describedby="sizing-addon1" required>
+              </div>
+
+              <div class="form-group input-group-lg">
+                  <label for="inputCiudad" >Ciudad:</label>
+                  <input type="text" id="inputCiudad" class="form-control" placeholder="ingresa tu ciudad..." aria-describedby="sizing-addon1" required>
+              </div>
+
+              <div class="form-group input-group-lg">
+                  <label for="inputPais" >País:</label>
+                  <input type="text" id="inputPais" class="form-control" placeholder="ingresa tu país..." aria-describedby="sizing-addon1" required>
+              </div>
+              <div class="form-group input-group-lg">
+                  <label for="inputRegalo">Elige tu Regalo:</label>
+                  <select class="form-control" id="inputRegalo" placeholder="Elige tu regalo">
+                   <option value="Sesion de Ejercicio">Sesion de Ejercicio</option>
+                   <option value="Spa Facial">Spa Facial</option>
+                   <option value="Evaluación Metabólica">Evaluación Metabólica</option>
+                  </select>
+              </div>
+              <div class="form-group input-group-lg">
+                  <label for="inputInformacion">Información Sobre:</label>
+                  <select class="form-control" id="inputInformacion" placeholder="Elige tu regalo">
+                   <option value="Reto de 3 Días">Reto de 3 Días</option>
+                   <option value="Entrenador de Nivel 10">Entrenador de Nivel 10</option>
+                   <option value="Oportunidad de Negocio">Oportunidad de Negocio</option>
+                  </select>
+              </div>
+              <div class="form-group input-group-lg">
+                  <label for="inputCodigo">Código de Entrenador:</label>
+                  <input type="text" id="inputCodigo" class="form-control" placeholder="Código..." aria-describedby="sizing-addon1" required>
+              </div>
+              <div class="alert alert-info" role="alert" id="infoRegistro">
+                <p>
+                  <span class="glyphicon glyphicon-info-sign"></span>
+                  Ingresa el codigo aquí.
+                </p>
+              </div>
+              <br>
+              <div class="alert alert-success" role="alert" id="registrado">Éxito! Se ha registrado correctamente.</div>
+              <div align="center">
+                <a id="registro" onClick="register()"><img class="img-responsive" src="images/boton-subscribete.png"></a>
+              </div>
+              <center>
+                <h3>Ingresa el Código:</h3>
+                <h1 id="codigoEntrenador"> </h1>
+              </center>
+              <br>
+              <!--<button id="registro" class="btn btn-lg btn-primary btn-block" onClick="register()">Registrame</button>-->
+            </form>
+          </div>
+          <!-- FIN FORMULARIO -->
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-6 col-md-5"> 
+      <div class="col-xs-6 col-md-5">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <label><h4><b> Videos </b></h4></label> 
+            <label><h4><b> Videos </b></h4></label>
           </div>
           <div class="panel-body">
             <h4>
-              <label> Lunes: </label> 
+              <label> Lunes: </label>
               <a href="https://livestream.com/accounts/20125261/events/6251835"> Reunión de oportunidad </a>
             </h4>
           </div>
@@ -126,16 +187,16 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-0 col-md-2"> 
+      <div class="col-xs-0 col-md-2">
       </div>
       <div class="col-xs-6 col-md-5">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <label><h4><b> Horarios Reuniones </b></h4></label> 
+            <label><h4><b> Horarios Reuniones </b></h4></label>
           </div>
           <div class="panel-body">
             <h4>
-              <label> Lunes: </label> 
+              <label> Lunes: </label>
               22:00
             </h4>
           </div>
@@ -148,26 +209,29 @@
         </div>
       </div>
     </div>
+    <!--
     <div class="row">
       <div class="col-xs-12 col-md-12">
         <h5 id="codigoEntrenador"> </h5>
-      </div> 
+      </div>
     </div>
+    -->
   </div>
   <footer class ="bs-docs-footer textcolorWhite" role="contentinfo">
     <p>
       <h3>Siguenos en</h3>
     </p>
     <p>
-      <a href="#facebook"><img src="images/social/facebook.png" width="60px" height="60px"></img></a>
-      <a href="#youtube"><img src="images/social/youtube.png" width="60px" height="60px"></img></a>
-      <a href="#instagram"><img src="images/social/instagram.png" width="60px" height="60px"></img></a>
+      <a href="https://www.facebook.com/myNivel10/" target="_blank"><img src="images/social/facebook.png" width="60px" height="60px"></img></a>
+      <a href="https://www.instagram.com/nivel10_fit/" target="_blank"><img src="images/social/instagram.png" width="60px" height="60px"></img></a>
     </p>
     <p>&copy; 2016 Nivel 10. All rights reserved.
-      <a href="#privacy">Privacy</a><font color=white size="3">.</font>
-      <a href="#terms">Terms of Service</a>.
+      <a href="http://nivel10.org/appnivel10/terminos-de-servicio.html">Privacy</a><font color=white size="3">.</font>
+      <a href="http://nivel10.org/appnivel10/terminos-de-servicio.html">Terms of Service</a>.
     </p>
   </footer>
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+  <script src="registro.js"></script>
   <script type="text/javascript">
     var iniciado = false;
     if(!iniciado){
@@ -240,13 +304,6 @@
       divBiografia.innerHTML = data.biografia;
       codigo.innerHTML = "Ingresa el código <b>"+key+"</b>";
     }
-    /** Cerrar Sesión **/
-    var cerrar = document.getElementById('cerrarSesion');
-    cerrar.addEventListener('click', function () {
-      localStorage.removeItem("nombre");
-      localStorage.removeItem("userID");
-      window.location.assign("index.html");
-    });
   </script>
 </body>
 </html>
