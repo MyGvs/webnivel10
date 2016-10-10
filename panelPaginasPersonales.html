@@ -103,7 +103,10 @@
         var entrenadores = firebase.database().ref('entrenador/'+userId);
         entrenadores.on('value', function(data) {
           console.log(data.key);
-          if(data.val() != null) addLinkTrainer(userId);
+          if(data.val() != null){
+            addLinkTrainer(userId);
+            addLinkTrainerInput(userId);
+          }
         });
       }
       /*if(localStorage.getItem("userID")){
@@ -135,6 +138,28 @@
           id: localStorage.getItem("id"),
           key: localStorage.getItem("key")
         };
+
+        div.appendChild(button);
+        console.log("Lijto pariente");
+      }
+
+      /** Crear el lin del trainer **/
+      function addLinkTrainerInput(id){
+        var div = document.getElementById('buttons');
+        var button = document.createElement('a');
+        button.textContent = "Copie este link: ";
+        button.setAttribute("class","btn btn-lg btn-primary btn-block");
+        button.setAttribute("type","submit");
+        button.setAttribute("id","linkPersonal");
+
+        var input = document.createElement('input');
+        input.setAttribute("type", "text");
+        input.setAttribute("class", "form-control");
+        input.setAttribute("id", "linkEntrenadorPersonal");
+        input.setAttribute("value", "http://nivel10.org/entrenadores/perfil_entrenador?id="+id);
+        input.setAttribute("readonly", "readonly");
+
+        button.appendChild(input);
 
         div.appendChild(button);
         console.log("Lijto pariente");
