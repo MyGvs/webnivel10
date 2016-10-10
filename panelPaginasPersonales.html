@@ -160,6 +160,13 @@
         input.setAttribute("readonly", "readonly");
 
         button.appendChild(input);
+        button.addEventListener('click', function () {
+          console.log("se hizo click");
+          var texto = document.getElementById('linkEntrenadorPersonal'); 
+          texto.focus();
+          texto.select();
+          document.execCommand('Copy');
+        });
 
         div.appendChild(button);
         console.log("Lijto pariente");
