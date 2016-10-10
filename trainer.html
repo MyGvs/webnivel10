@@ -131,6 +131,7 @@
 
 		/** Registrar entrenador **/
     	var register = function(){
+    		var cod = localStorage.getItem("id");
     		var userId = localStorage.getItem("key");
     		var nombre = document.getElementById("nombre");
     		var biografia = document.getElementById("biografia");
@@ -163,7 +164,8 @@
 					nombre: nombre.value,
 					biografia: biografia.value,
 					fecha_registro: today,
-					url_imagen: 'imagenes/'+file.name
+					url_imagen: 'imagenes/'+file.name,
+					codigo: cod
 				}
 			});
 
