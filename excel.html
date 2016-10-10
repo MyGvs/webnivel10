@@ -36,20 +36,71 @@
   </head>
 
   <body>
-
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="index.html">
+          <img class="navbar-brand" alt="Brand" src="images/ic_launcher.png">
+        </a>
+      </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="#">Bienvenid@, usuario
+              </a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+  <br>
     <div class="container">
       <br/>
-      <table id="datatable" class="table">
-        <tr>
-          <th> Key </th>
-          <th> Nombre </th>
-          <th> Biografía </th>
-          <th> Fecha de registro </th>
-          <th> Url de imagen </th>
-        </tr>
-      </table>
+      <center><h1> Reporte de Prospectos </h1></center>
+      <div class="table-responsive">
+        <table id="datatable" class="table table-hover ">
+          <tr class="active">
+            <th> Código </th>
+            <th> Nombre </th>
+            <th> Email </th>
+            <th> Celular </th>
+            <th> Ciudad </th>
+            <th> País </th>
+            <th> Información </th>
+            <th> Regalo </th>
+            <th> Hora </th>
+            <th> Fecha </th>
+            <th> Timestamp </th>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Reporte');" class="btn btn-success btn-lg">
+        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Exportar a Excel
+      </a>
     </div>
-    <a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Reporte');">Export to Excel</a>
+    <br><br>
+    <footer class ="bs-docs-footer textcolorWhite" role="contentinfo">
+      <p>
+        <h3>Siguenos en</h3>
+      </p>
+      <p>
+        <a href="#facebook"><img src="images/social/facebook.png" width="60px" height="60px"></img></a>
+        <a href="#youtube"><img src="images/social/youtube.png" width="60px" height="60px"></img></a>
+        <a href="#instagram"><img src="images/social/instagram.png" width="60px" height="60px"></img></a>
+      </p>
+      <p>&copy; 2016 Nivel 10. All rights reserved.
+        <a href="#privacy">Privacy</a><font color=white size="3">.</font>
+        <a href="#terms">Terms of Service</a>.
+      </p>
+    </footer>
     <script type="text/javascript">
       var iniciado = false;
       if(!iniciado){
@@ -61,29 +112,47 @@
         createTable();
       }
       function createTable(){
-        // Crear un reporte de entrenadores
+        // Crear un reporte de prospectos
         var table = document.getElementById('datatable');
 
         /** Datos **/
-        var entrenadores = firebase.database().ref('entrenador/');
-        entrenadores.on('child_added', function(data) {
+        var prospectos = firebase.database().ref('prospecto/general/');
+        prospectos.on('child_added', function(data) {
           console.log(data.val());
           var row = table.insertRow(1);
 
           cell = row.insertCell(-1);
-          cell.innerHTML = data.key;
+          cell.innerHTML = data.val().codigo;
 
           cell = row.insertCell(-1);
-          cell.innerHTML = data.val().perfil.nombre;
+          cell.innerHTML = data.val().nombre;
 
           cell = row.insertCell(-1);
-          cell.innerHTML = data.val().perfil.biografia;
+          cell.innerHTML = data.val().email;
 
           cell = row.insertCell(-1);
-          cell.innerHTML = data.val().perfil.fecha_registro;          
+          cell.innerHTML = data.val().celular;          
 
           cell = row.insertCell(-1);
-          cell.innerHTML = data.val().perfil.url_imagen;
+          cell.innerHTML = data.val().ciudad;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().pais;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().info;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().regalo;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().hora;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().fecha;
+
+          cell = row.insertCell(-1);
+          cell.innerHTML = data.val().timestamp;
         });
       }
     </script>
