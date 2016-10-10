@@ -120,8 +120,7 @@ function register() {
             hora: (hour + ":" + minute)
         }).then(function () {
             document.getElementById('registrado').style.display = 'block';
-            //document.getElementById('registro').innerHTML = "Registrado.";
-            //window.location.assign("registroExitoso.html");
+            openInNewTab("registroExitoso.html");
         })
         .catch(function (error) {
             console.log("Set fallido: " + error.message);
@@ -138,5 +137,8 @@ function validateEmail(id) {
     else {
         return true;
     }
-
+}
+function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
 }
