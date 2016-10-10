@@ -120,7 +120,6 @@
 			    scrollbar: true
 			});
 		});
-
 		/** Cerrar Sesión **/
 		var cerrar = document.getElementById('cerrarSesion');
 		cerrar.addEventListener('click', function () {
@@ -158,7 +157,7 @@
 
 			//upload file
 			var task = storageRef.put(file);
-
+			console.log(userId);
 			firebase.database().ref('entrenador/'+userId).set({
 				perfil: {
 					nombre: nombre.value,

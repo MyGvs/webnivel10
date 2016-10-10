@@ -146,11 +146,9 @@
       /** Crear el lin del trainer **/
       function addLinkTrainerInput(id){
         var div = document.getElementById('buttons');
-        var button = document.createElement('a');
-        button.textContent = "Copie este link: ";
-        button.setAttribute("class","btn btn-lg btn-primary btn-block");
-        button.setAttribute("type","submit");
-        button.setAttribute("id","linkPersonal");
+
+        var div2 = document.createElement('div');
+        div2.setAttribute("class", "input-group");
 
         var input = document.createElement('input');
         input.setAttribute("type", "text");
@@ -159,7 +157,15 @@
         input.setAttribute("value", "http://nivel10.org/entrenadores/perfil_entrenador?id="+id);
         input.setAttribute("readonly", "readonly");
 
-        button.appendChild(input);
+        var span = document.createElement('span');
+        span.setAttribute("class", "input-group-btn");
+
+        var button = document.createElement('button');
+        button.textContent = "Copiar";
+        button.setAttribute("class","btn btn-primary");
+        button.setAttribute("type","button");
+        button.setAttribute("id","linkPersonal");
+
         button.addEventListener('click', function () {
           console.log("se hizo click");
           var texto = document.getElementById('linkEntrenadorPersonal'); 
@@ -168,7 +174,11 @@
           document.execCommand('Copy');
         });
 
-        div.appendChild(button);
+        span.appendChild(button);
+        div2.appendChild(input);
+        div2.appendChild(span);
+
+        div.appendChild(div2);
         console.log("Lijto pariente");
       }
     </script>
