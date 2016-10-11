@@ -17,6 +17,7 @@ var itemsPorPagina = 100;
 var maxvalue = 0;
 var generarReporte = document.getElementById('generarReporte');
 
+document.getElementById('hideContainer').style.display = 'none'; //block
 //GETTING DATA 
 getData();
 
@@ -86,8 +87,11 @@ function getData() {
         Prospectos.push(prospecto);               
     });
     prospectosRef.once('value').then(function (dataSnapshot) {
+        document.getElementById('hideContainer').style.display = 'block'; //block
         console.log("listado terminado");
-        cargarDatosEnTabla(1,1);//no borres estos numero me serviran para la paginacion
+        maxvalue = Prospectos.length - 1;
+        calcularPaginas(maxvalue);
+        //cargarDatosEnTabla(1,1);//no borres estos numero me serviran para la paginacion
     });
 }
 function createTable(){
@@ -101,10 +105,19 @@ function createTable(){
         
     });
 }
+//pages
+var previus = document.getElementById('previus');
+var next = document.getElementById('next');
+previus.addEventListener('click', function () {
+    showRecordsBack();
+});
+next.addEventListener('click', function () {
+    showRecordsNext();
+});
 function cargarDatosEnTabla(inicio, final) {
     var table = document.getElementById("tablaProspectos");
     
-    for (i = 0; i < Prospectos.length; i++) {
+    for (i = final; i <=inicio; i++) {
         //console.log(Prospectos[i]);
         var rowCount = table.rows.length;
         var row = table.insertRow(rowCount);
@@ -138,5 +151,36 @@ function cargarDatosEnTabla(inicio, final) {
         //celda Fecha Registro
         var celda_9 = row.insertCell(9);
         celda_9.innerHTML = Prospectos[i].fecha;
+    }
+}
+//FUNCIONES DE PAGINACION
+function calcularPaginas(numRows) {
+    for (i = numRows; i >= 0 ; i -= itemsPorPagina) {
+        var p = new Object();
+        if ((i - itemsPorPagina) <= 0) {
+            p.inicio = i;
+            p.final = 0;
+        } else {
+            p.inicio = i;
+            p.final = i - itemsPorPagina;
+        }
+        Paginas.push(p);
+    }
+    showRecordsNext();
+}
+function showRecordsNext() {
+    if ((puntero + 1) < Paginas.length) {
+        puntero++;
+        console.log(Paginas[puntero].inicio + " - " + Paginas[puntero].final);
+        cargarDatosEnTabla(Paginas[puntero].inicio, Paginas[puntero].final);
+        console.log(puntero);
+    }
+}
+function showRecordsBack() {
+    if (puntero > 0) {
+        puntero--;
+        console.log(Paginas[puntero].inicio + " - " + Paginas[puntero].final);
+        cargarDatosEnTabla(Paginas[puntero].inicio, Paginas[puntero].final);
+        console.log(puntero);
     }
 }
