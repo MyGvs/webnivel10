@@ -21,53 +21,18 @@ document.getElementById('hideContainer').style.display = 'none'; //block
 //GETTING DATA 
 getData();
 
+var date = new Date();
+var month = date.getMonth();
+var day = date.getDate();
+var year = date.getFullYear();
+var nombreArchivo = CodigoEntrenador + "_Prospectos_Registro_General_" + (day + "/" + (month + 1) + "/" + year);
+
+var button = document.getElementById('generarReporte');
+button.setAttribute("download", nombreArchivo+".xls");
 
 generarReporte.addEventListener('click', function () {
-    var date = new Date();
-    var month = date.getMonth();
-    var day = date.getDate();
-    var year = date.getFullYear();
-    var nombreArchivo = CodigoEntrenador + "_Prospectos_Registro_General_" + (day + "/" + (month + 1) + "/" + year);
-    generarReporteEXCEL(Prospectos, nombreArchivo);
+    return ExcellentExport.excel(this, 'tablaProspectos', 'Reporte');
 });
-function generarReporteEXCEL(arrayProspectos, nombreArchivo) {
-    console.log(nombreArchivo);
-    var button = document.getElementById('buttonDescarga');
-    button.setAttribute("download", nombreArchivo+".xls");
-
-    var table = document.getElementById('data');
-    for (i = 0; i < arrayProspectos.length; i++) { 
-        console.log(arrayProspectos[i]);
-        var row = table.insertRow(-1);
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = (i + 1);
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = arrayProspectos[i].nombre;
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = arrayProspectos[i].celular;
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = arrayProspectos[i].email;          
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = arrayProspectos[i].regalo;
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = arrayProspectos[i].info;
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = arrayProspectos[i].ciudad;
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = arrayProspectos[i].pais;
-
-        cell = row.insertCell(-1);
-        cell.innerHTML = arrayProspectos[i].fecha;
-    }
-}
 function getData() {
     var prospectosRef = firebase.database().ref('prospecto/general');
     prospectosRef.orderByChild("timestamp").on("child_added", function(snapshot) {
