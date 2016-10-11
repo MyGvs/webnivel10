@@ -26,6 +26,41 @@ generarReporte.addEventListener('click', function () {
 });
 function generarReporteEXCEL(arrayProspectos, nombreArchivo) {
     console.log(nombreArchivo);
+    var button = document.getElementById('buttonDescarga');
+    button.setAttribute("download", nombreArchivo+".xls");
+
+    var table = document.getElementById('data');
+    for (i = 0; i < arrayProspectos.length; i++) { 
+        console.log(arrayProspectos[i]);
+        var row = table.insertRow(-1);
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = (i + 1);
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = arrayProspectos[i].nombre;
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = arrayProspectos[i].celular;
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = arrayProspectos[i].email;          
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = arrayProspectos[i].regalo;
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = arrayProspectos[i].info;
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = arrayProspectos[i].ciudad;
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = arrayProspectos[i].pais;
+
+        cell = row.insertCell(-1);
+        cell.innerHTML = arrayProspectos[i].fecha;
+    }
 }
 getData();
 function getData() {
@@ -46,5 +81,16 @@ function getData() {
         //Subiendo prospecto al array
         Prospectos.push(prospecto);
         //console.log(prospecto.nombre);        
+    });
+}
+function createTable(){
+    // Crear un reporte de prospectos
+    var table = document.getElementById('data');
+
+    /** Datos **/
+    var prospectos = firebase.database().ref('prospecto/general/');
+    prospectos.on('child_added', function(data) {
+        console.log(data.val());
+        
     });
 }
