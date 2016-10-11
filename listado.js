@@ -29,7 +29,7 @@ function generarReporteEXCEL(arrayProspectos, nombreArchivo) {
 }
 getData();
 function getData() {
-    var prospectosRef = firebase.database().ref('prospecto/lunes');
+    var prospectosRef = firebase.database().ref('prospecto/general');
     prospectosRef.orderByChild("timestamp").on("child_added", function(snapshot) {
         var snapshotProspecto = snapshot.val();
         var prospecto = new Object();
