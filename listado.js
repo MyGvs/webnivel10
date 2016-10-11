@@ -7,7 +7,7 @@ var config = {
     messagingSenderId: "793947826055"
 };
 firebase.initializeApp(config);
-//GETTING DATA 
+//VARIABLES
 var Prospectos = [];
 //variables de paginación
 var Paginas = [];
@@ -16,6 +16,11 @@ var puntero = -1;
 var itemsPorPagina = 100;
 var maxvalue = 0;
 var generarReporte = document.getElementById('generarReporte');
+
+//GETTING DATA 
+getData();
+
+
 generarReporte.addEventListener('click', function () {
     var date = new Date();
     var month = date.getMonth();
@@ -62,7 +67,6 @@ function generarReporteEXCEL(arrayProspectos, nombreArchivo) {
         cell.innerHTML = arrayProspectos[i].fecha;
     }
 }
-getData();
 function getData() {
     var prospectosRef = firebase.database().ref('prospecto/general');
     prospectosRef.orderByChild("timestamp").on("child_added", function(snapshot) {
@@ -79,8 +83,11 @@ function getData() {
         prospecto.hora = snapshotProspecto.hora;
         prospecto.codigo = snapshotProspecto.codigo;
         //Subiendo prospecto al array
-        Prospectos.push(prospecto);
-        //console.log(prospecto.nombre);        
+        Prospectos.push(prospecto);               
+    });
+    prospectosRef.once('value').then(function (dataSnapshot) {
+        console.log("listado terminado");
+        cargarDatosEnTabla(1,1);//no borres estos numero me serviran para la paginacion
     });
 }
 function createTable(){
@@ -93,4 +100,43 @@ function createTable(){
         console.log(data.val());
         
     });
+}
+function cargarDatosEnTabla(inicio, final) {
+    var table = document.getElementById("tablaProspectos");
+    
+    for (i = 0; i < Prospectos.length; i++) {
+        //console.log(Prospectos[i]);
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+        //celda de #
+        var celda_0 = row.insertCell(0);
+        celda_0.innerHTML = (i + 1) + ".";
+        //celda Nombre
+        var celda_1 = row.insertCell(1);
+        celda_1.innerHTML = Prospectos[i].nombre;
+        //celda Celular
+        var celda_2 = row.insertCell(2);
+        celda_2.innerHTML = Prospectos[i].celular;
+        //celda Email
+        var celda_3 = row.insertCell(3);
+        celda_3.innerHTML = Prospectos[i].email;
+        //celda Regalo
+        var celda_4 = row.insertCell(4);
+        celda_4.innerHTML = Prospectos[i].regalo;
+        //celda Información
+        var celda_5 = row.insertCell(5);
+        celda_5.innerHTML = Prospectos[i].info;
+        //celda Ciudad
+        var celda_6 = row.insertCell(6);
+        celda_6.innerHTML = Prospectos[i].ciudad;
+        //celda País
+        var celda_7 = row.insertCell(7);
+        celda_7.innerHTML = Prospectos[i].pais;
+        //celda Hora Registro
+        var celda_8 = row.insertCell(8);
+        celda_8.innerHTML = Prospectos[i].hora;
+        //celda Fecha Registro
+        var celda_9 = row.insertCell(9);
+        celda_9.innerHTML = Prospectos[i].fecha;
+    }
 }
