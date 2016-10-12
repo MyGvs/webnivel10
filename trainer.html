@@ -173,6 +173,7 @@
 					//var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 					//uploader.value = percentage+"%";
 					var registrado = document.getElementById("buttonRegister");
+					registrado.innerHTML = "Registrando...";
 					registrado.setAttribute("disabled","disabled");
 				},
 				function error(err){
@@ -207,6 +208,8 @@
 			        nombre.value = "";
 			        biografia.value = "";
 			        imagen.value = "";
+
+			        window.location.assign("panelPaginasPersonales.html");
 				}
 			);
 			console.log(userId);
