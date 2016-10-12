@@ -30,6 +30,7 @@
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="dist/js/bootstrap.min.js"></script>
     <script src="assets/js/docs.min.js"></script>
+    <script src="dist/js/clipboard.min.js"></script>
     <style>
     .margintop{
       margin-top: 7px;
@@ -141,7 +142,7 @@
         };
 
         div.appendChild(button);
-        console.log("Lijto pariente");
+        //console.log("Lijto pariente");
       }
 
       /** Crear el lin del trainer **/
@@ -166,13 +167,15 @@
         button.setAttribute("class","btn btn-primary");
         button.setAttribute("type","button");
         button.setAttribute("id","linkPersonal");
+        button.setAttribute("data-clipboard-target", "#linkEntrenadorPersonal")
 
         button.addEventListener('click', function () {
           console.log("se hizo click");
           var texto = document.getElementById('linkEntrenadorPersonal');
-          texto.focus();
-          texto.select();
-          document.execCommand('Copy');
+          //texto.focus();
+          //texto.select();
+          //document.execCommand('Copy');
+          //copy(getSelection().toString())
         });
 
         span.appendChild(button);
@@ -180,8 +183,10 @@
         div2.appendChild(span);
 
         div.appendChild(div2);
-        console.log("Lijto pariente");
+        //console.log("Lijto pariente");
       }
+
+      new Clipboard('#linkPersonal');
     </script>
   </body>
 </html>
