@@ -86,7 +86,7 @@
 		  		<label for="imagen"> Imágen de Perfil: </label>
 			    <input type="file" class="form-control" id="imagen">
 		  	</div>
-		  	<button class="btn btn-lg btn-success btn-block" onClick="register()">Registrar</button>
+		  	<button class="btn btn-lg btn-success btn-block" onClick="register()" id="buttonRegister">Registrar</button>
 		  	<br>
 		  	<div id="registradorCorrectamente">
 
@@ -157,7 +157,7 @@
 
 			//upload file
 			var task = storageRef.put(file);
-			console.log(userId);
+
 			firebase.database().ref('entrenador/'+userId).set({
 				perfil: {
 					nombre: nombre.value,
@@ -168,33 +168,49 @@
 				}
 			});
 
-			/** Alerta de confirmacion de registro **/
-			var registrado = document.getElementById("registradorCorrectamente");
+			task.on('state_changed',
+				function progress(snapshot){
+					//var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					//uploader.value = percentage+"%";
+					var registrado = document.getElementById("buttonRegister");
+					registrado.setAttribute("disabled","disabled");
+				},
+				function error(err){
+					console.log("error during upload.");
+				},
+				function complete(){
+					console.log("upload completed.");
+					/** Alerta de confirmacion de registro **/
+					var registrado = document.getElementById("registradorCorrectamente");
 
-			// Componentes
-			var div = document.createElement('div');
-			var b = document.createElement('b');
-			var center = document.createElement('center');
-			var h4 = document.createElement('h4');
+					// Componentes
+					var div = document.createElement('div');
+					var b = document.createElement('b');
+					var center = document.createElement('center');
+					var h4 = document.createElement('h4');
 
-			// Concatenamiento de componentes
-			center.appendChild(h4);
-			b.appendChild(center);
-			div.appendChild(b);
+					// Concatenamiento de componentes
+					center.appendChild(h4);
+					b.appendChild(center);
+					div.appendChild(b);
 
-			// Poner mensaje al h4
-			h4.textContent = "Registrado correctamente";
+					// Poner mensaje al h4
+					h4.textContent = "Registrado correctamente";
 
-			// Clases del div
-			div.className = 'alert alert-success';
-			div.setAttribute("role", "alert");
-			// Poner en el div
-			registrado.appendChild(div);
+					// Clases del div
+					div.className = 'alert alert-success';
+					div.setAttribute("role", "alert");
+					// Poner en el div
+					registrado.appendChild(div);
 
-			/** Limpiar campos **/
-	        nombre.value = "";
-	        biografia.value = "";
-	        imagen.value = "";
+					/** Limpiar campos **/
+			        nombre.value = "";
+			        biografia.value = "";
+			        imagen.value = "";
+				}
+			);
+			console.log(userId);
+
 	        //window.location.assign("panelPaginasPersonales.html");
     	}
     </script>

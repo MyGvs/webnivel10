@@ -266,6 +266,9 @@
         var divImg = document.getElementById('imagenEntrenador');
         var img = document.createElement('img');
         img.setAttribute("src", url);
+        img.setAttribute("class", "img-responsive");
+        img.setAttribute("alt", "Responsive image");
+        
         divImg.appendChild(img);
       }).catch(function(error) {
         switch (error.code) {
