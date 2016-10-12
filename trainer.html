@@ -120,13 +120,18 @@
 			    scrollbar: true
 			});
 		});
+		if(localStorage.getItem("key")){
+	  }else{
+	    window.location.assign("index.html");
+	  }
 		/** Cerrar Sesión **/
 		var cerrar = document.getElementById('cerrarSesion');
-		cerrar.addEventListener('click', function () {
-			localStorage.removeItem("nombre");
-			localStorage.removeItem("userID");
-			window.location.assign("index.html");
-		});
+	  cerrar.addEventListener('click', function () {
+	    localStorage.removeItem("name");
+	    localStorage.removeItem("key");
+	    localStorage.removeItem("id");
+	    window.location.assign("index.html");
+	  });
 
 		/** Registrar entrenador **/
     	var register = function(){

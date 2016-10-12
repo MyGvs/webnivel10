@@ -76,18 +76,19 @@
     </div>
     <div class="form-signin" id="buttons">
       <button class="btn btn-lg btn-primary btn-block" type="submit" id="agregarPagina">Página Personal</button>
-      <a class="btn btn-lg btn-primary btn-block" type="button" href="lista_prospecto_general.html">
-        Registro general <span class="badge">4</span>
+      <a id="reporteGeneral" class="btn btn-lg btn-primary btn-block" type="button" href="lista_prospecto_general.html">
+        Registro general
       </a>
-      <a class="btn btn-lg btn-primary btn-block" type="button">
-        Registro seminarios (Lunes) <span class="badge">4</span>
+      <a id="reporteLunes" class="btn btn-lg btn-primary btn-block" type="button" href="lista_prospecto_seminario_lunes.html">
+        Registro seminarios (Lunes)
       </a>
-      <a class="btn btn-lg btn-primary btn-block" type="button">
-        Registro seminarios (Jueves) <span class="badge">4</span>
+      <a id="reporteJueves" class="btn btn-lg btn-primary btn-block" type="button" href="lista_prospecto_seminario_jueves.html">
+        Registro seminarios (Jueves)
       </a>
     </div>
 
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="nuevos.js"></script>
     <script>
       var iniciado = false;
       if(!iniciado){
@@ -154,7 +155,7 @@
         input.setAttribute("type", "text");
         input.setAttribute("class", "form-control");
         input.setAttribute("id", "linkEntrenadorPersonal");
-        input.setAttribute("value", "http://nivel10.org/entrenadores/perfil_entrenador?id="+id);
+        input.setAttribute("value", "http://nivel10.org/entrenadores/perfil_entrenador.html?id="+id);
         input.setAttribute("readonly", "readonly");
 
         var span = document.createElement('span');
@@ -168,7 +169,7 @@
 
         button.addEventListener('click', function () {
           console.log("se hizo click");
-          var texto = document.getElementById('linkEntrenadorPersonal'); 
+          var texto = document.getElementById('linkEntrenadorPersonal');
           texto.focus();
           texto.select();
           document.execCommand('Copy');

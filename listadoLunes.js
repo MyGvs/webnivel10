@@ -7,7 +7,6 @@ var config = {
     messagingSenderId: "793947826055"
 };
 firebase.initializeApp(config);
-document.getElementById('generarReporte').style.display = 'none'; //block
 //VARIABLES
 var Prospectos = [];
 var ProspectosNuevos = [];
@@ -18,7 +17,7 @@ var puntero = -1;
 var itemsPorPagina = 100;
 var maxvalue = 0;
 var generarReporte = document.getElementById('generarReporte');
-
+document.getElementById('generarReporte').style.display = 'none'; //block
 document.getElementById('hideContainer').style.display = 'none'; //block
 //GETTING DATA 
 getData();
@@ -27,7 +26,7 @@ var date = new Date();
 var month = date.getMonth();
 var day = date.getDate();
 var year = date.getFullYear();
-var nombreArchivo = CodigoEntrenador + "_Prospectos_Registro_General_" + (day + "/" + (month + 1) + "/" + year);
+var nombreArchivo = CodigoEntrenador + "_Prospectos_Registro_Seminario_Lunes_" + (day + "/" + (month + 1) + "/" + year);
 
 var button = document.getElementById('generarReporte');
 button.setAttribute("download", nombreArchivo+".xls");
@@ -36,7 +35,7 @@ generarReporte.addEventListener('click', function () {
     return ExcellentExport.excel(this, 'tablaProspectos', 'Reporte');
 });
 function getData() {
-    var prospectosRef = firebase.database().ref('prospecto/general');
+    var prospectosRef = firebase.database().ref('prospecto/lunes');
     prospectosRef.orderByChild("timestamp").on("child_added", function(snapshot) {
         var snapshotProspecto = snapshot.val();
         if (snapshotProspecto.codigo == CodigoEntrenador) {
@@ -44,8 +43,8 @@ function getData() {
             prospecto.nombre = snapshotProspecto.nombre;
             prospecto.celular = snapshotProspecto.celular;
             prospecto.email = snapshotProspecto.email;
-            prospecto.regalo = snapshotProspecto.regalo;
-            prospecto.info = snapshotProspecto.info;
+            //prospecto.regalo = snapshotProspecto.regalo;
+            //prospecto.info = snapshotProspecto.info;
             prospecto.ciudad = snapshotProspecto.ciudad;
             prospecto.pais = snapshotProspecto.pais;
             prospecto.fecha = snapshotProspecto.fecha;
@@ -53,14 +52,14 @@ function getData() {
             prospecto.codigo = snapshotProspecto.codigo;
             prospecto.visto = snapshotProspecto.visto;
             prospecto.key = snapshot.key;
-            if (prospecto.visto == 0) {               
+            if (prospecto.visto == 0) {
                 ProspectosNuevos.push(prospecto);
             }
             //Subiendo prospecto al array
             Prospectos.push(prospecto);
         }                       
     });
-    prospectosRef.once('value').then(function (dataSnapshot) {        
+    prospectosRef.once('value').then(function (dataSnapshot) {
         document.getElementById('hideContainer').style.display = 'block'; //block
         document.getElementById('generarReporte').style.display = 'block'; //block
         console.log("listado terminado");
@@ -102,29 +101,23 @@ function cargarDatosEnTabla(inicio, final) {
         //celda Email
         var celda_3 = row.insertCell(3);
         celda_3.innerHTML = Prospectos[i].email;
-        //celda Regalo
-        var celda_4 = row.insertCell(4);
-        celda_4.innerHTML = Prospectos[i].regalo;
-        //celda Información
-        var celda_5 = row.insertCell(5);
-        celda_5.innerHTML = Prospectos[i].info;
         //celda Ciudad
-        var celda_6 = row.insertCell(6);
-        celda_6.innerHTML = Prospectos[i].ciudad;
+        var celda_4 = row.insertCell(4);
+        celda_4.innerHTML = Prospectos[i].ciudad;
         //celda País
-        var celda_7 = row.insertCell(7);
-        celda_7.innerHTML = Prospectos[i].pais;
+        var celda_5 = row.insertCell(5);
+        celda_5.innerHTML = Prospectos[i].pais;
         //celda Hora Registro
-        var celda_8 = row.insertCell(8);
-        celda_8.innerHTML = Prospectos[i].hora;
+        var celda_6 = row.insertCell(6);
+        celda_6.innerHTML = Prospectos[i].hora;
         //celda Fecha Registro
-        var celda_9 = row.insertCell(9);
-        celda_9.innerHTML = Prospectos[i].fecha;
+        var celda_7 = row.insertCell(7);
+        celda_7.innerHTML = Prospectos[i].fecha;
     }
 }
 function actualizarProspectosNuevos() {
     for (i = 0; i < ProspectosNuevos.length; i++) {
-        var updateRef = firebase.database().ref('prospecto/general/' + ProspectosNuevos[i].key);
+        var updateRef = firebase.database().ref('prospecto/lunes/' + ProspectosNuevos[i].key);
         updateRef.update({
             visto: 1
         });

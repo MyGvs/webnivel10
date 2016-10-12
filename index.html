@@ -48,7 +48,9 @@
             localStorage.setItem("name", nombreAsesor);
             localStorage.setItem("key", key);
             localStorage.setItem("id", id);
-            valido = true;
+            if(asesor.entraSorteo == "true"){
+              valido = true;
+            }
           });
           ref.once('value', function(snapshot) {
             if(valido){
