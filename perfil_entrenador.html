@@ -75,13 +75,7 @@
       <div class="col-xs-8 col-md-7">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <label><h4><b> Información del entrenador </b></h4></label>
-          </div>
-          <div class="panel-body">
-            <h4>
-              <label> Nombre: </label>
-              <h4 id="nombreEntrenador">  </h4>
-            </h4>
+            <label><h3><b id="nombreEntrenador">  </b></h3></label>
           </div>
           <div class="panel-body">
             <h4>
@@ -167,7 +161,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-6 col-md-5">
+      <div class="col-xs-2 col-md-2"> </div>
+      <div class="col-xs-8 col-md-8">
         <div class="panel panel-default">
           <div class="panel-heading">
             <label><h4><b> Videos </b></h4></label>
@@ -181,27 +176,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-0 col-md-2">
-      </div>
-      <div class="col-xs-6 col-md-5">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <label><h4><b> Horarios Reuniones </b></h4></label>
-          </div>
-          <div class="panel-body">
-            <h4>
-              <label> Lunes: </label>
-              22:00
-            </h4>
-          </div>
-          <div class="panel-body">
-            <h4>
-              <label> Jueves: </label>
-              22:00
-            </h4>
-          </div>
-        </div>
-      </div>
+      <div class="col-xs-2 col-md-2"></div>
     </div>
     <!--
     <div class="row">
@@ -268,7 +243,7 @@
         img.setAttribute("src", url);
         img.setAttribute("class", "img-responsive");
         img.setAttribute("alt", "Responsive image");
-        
+
         divImg.appendChild(img);
       }).catch(function(error) {
         switch (error.code) {
