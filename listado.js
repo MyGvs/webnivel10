@@ -30,10 +30,43 @@ var year = date.getFullYear();
 var nombreArchivo = CodigoEntrenador + "_Prospectos_Registro_General_" + (day + "/" + (month + 1) + "/" + year);
 
 var button = document.getElementById('generarReporte');
-button.setAttribute("download", nombreArchivo+".xls");
+//button.setAttribute("download", nombreArchivo+".xls");
 
 generarReporte.addEventListener('click', function () {
-    return ExcellentExport.excel(this, 'tablaProspectos', 'Reporte');
+    console.log(Prospectos);
+    // Crear instancia de Excel
+    var reporteProspectos = new ExcelPlus();
+
+    //Escribir los datos
+    reporteProspectos.createFile("Book1");
+    reporteProspectos.write({ "content":[ [
+            "#", 
+            "Nombre", 
+            "Celular",
+            "Email",
+            "Regalo",
+            "Informacion",
+            "Ciudad",
+            "Pais",
+            "Hora",
+            "Fecha de registro"
+        ] ] });
+    for(i = 0; i < Prospectos.length; i++){
+        reporteProspectos.writeNextRow([
+            (i+1), 
+            Prospectos[i].nombre, 
+            Prospectos[i].celular,
+            Prospectos[i].email,
+            Prospectos[i].regalo,
+            Prospectos[i].info,
+            Prospectos[i].ciudad,
+            Prospectos[i].pais,
+            Prospectos[i].hora,
+            Prospectos[i].fecha
+        ]);
+    }
+    reporteProspectos.saveAs(nombreArchivo+".xlsx");
+    //return ExcellentExport.excel(this, 'tablaProspectos', 'Reporte');
 });
 function getData() {
     var prospectosRef = firebase.database().ref('prospecto/general');
