@@ -417,13 +417,14 @@
           <!-- FIN FORMULARIO -->
       </div>
     </div>
+    <center>
+      <h1>Descarga Nuestra App <a href="https://play.google.com/store/apps/details?id=clubn10.com.clubn10&hl=es" target="_blank">Android</a>, <a href="https://itunes.apple.com/bo/app/nivel-10/id1124224326?l=en&mt=8" target="_blank">IOS</a></h1>
+      <h1>↓↓↓ Mira el Video ↓↓↓</h1>
+    </center>
     <div class="row">
       <div class="col-xs-2 col-md-2"> </div>
       <div class="col-xs-8 col-md-8">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <label><h4><b> Videos </b></h4></label>
-          </div>
           <div class="panel-body">
             <div class="embed-responsive embed-responsive-16by9">
               <video controls>
@@ -551,6 +552,10 @@
       divNombre.innerHTML = data.nombre;
       divBiografia.innerHTML = data.biografia;
       codigo.innerHTML = "Ingresa el código <b>"+data.codigo+"</b>";
+      codigo.style.display = 'none';
+      document.getElementById("inputCodigo").value = data.codigo;
+      document.getElementById("inputCodigo").disabled = true;
+      validarCodigo(data.codigo);
     }
   </script>
   <script>
